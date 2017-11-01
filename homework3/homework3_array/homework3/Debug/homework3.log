@@ -1,0 +1,10 @@
+﻿  main.cpp
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(113): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(114): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(123): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(124): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(136): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(239): warning C4101: “row1”: 未引用的局部变量
+c:\users\administrator\desktop\programming_finance\hw\homework3\homework3_array\homework3\main.cpp(239): warning C4101: “column1”: 未引用的局部变量
+  homework3.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\homework3\homework3_array\Debug\homework3.exe
+  homework3.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\homework3\homework3_array\Debug\homework3.pdb (Partial PDB)

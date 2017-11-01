@@ -1,0 +1,6 @@
+﻿  SetTest.cpp
+  IntegerSet.cpp
+c:\users\administrator\desktop\programming_finance\hw\inclass5\inclass5\integerset.cpp(62): warning C4553: “==”: 运算符不起任何作用；是否是有意使用“=”的?
+  正在生成代码...
+  InClass5.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\InClass5\Debug\InClass5.exe
+  InClass5.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\InClass5\Debug\InClass5.pdb (Partial PDB)
