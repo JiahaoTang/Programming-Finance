@@ -147,12 +147,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="OvernightPackage.h" />
     <ClInclude Include="Package.h" />
+    <ClInclude Include="TwoDayPackage.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OvernightPackage.cpp" />
     <ClCompile Include="Package.cpp" />
+    <ClCompile Include="TwoDayPackage.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

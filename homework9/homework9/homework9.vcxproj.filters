@@ -21,6 +21,12 @@
     <ClInclude Include="User.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TwoDayPackage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OvernightPackage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Package.cpp">
@@ -30,6 +36,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TwoDayPackage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OvernightPackage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
