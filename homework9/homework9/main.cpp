@@ -17,18 +17,25 @@ int main() {
 	User MarySmith = User("MarySmith", "3 Davidson Road", "Piscataway", "NJ", "08854");
 	User JenniferSmith = User("Jennifer Smith", "4 Davidson Road", "Piscataway", "NJ", "08854");
 
+	Package jtPkg = Package(JohnSmith, TomSmith, 10, 0.5);
+	Package mjPkg = TwoDayPackage(MarySmith, JenniferSmith, 5, 0.5, 2);
+	Package jmPkg = OvernightPackage(JohnSmith, MarySmith, 2, 0.5, 5);
+
 	vector< Package * > vectorOfPackage(3);
+	vectorOfPackage[0] = &jtPkg;
+	vectorOfPackage[1] = &mjPkg;
+	vectorOfPackage[2] = &jmPkg;
 
-	vectorOfPackage[0] = &Package(JohnSmith, TomSmith, 10, 0.5);
-	vectorOfPackage[1] = &TwoDayPackage(MarySmith, JenniferSmith, 5, 0.5, 2);
-	vectorOfPackage[2] = &OvernightPackage(JohnSmith, MarySmith, 2, 0.5, 5);
-
-	/*for (int i = 0; i < 3; i++) {
+	double totalCost = 0;
+	for (int i = 0; i < 3; i++) {
 		cout << "Package " << i + 1 << ":" << endl;
 		cout << endl;
 		outputInfo(vectorOfPackage[i]);
-	}*/
-	cout << vectorOfPackage[0]->getSender().getName() << endl;
+		totalCost += (*vectorOfPackage[i]).calculateCost();
+	}
+	cout.precision(2);
+	cout.setf(ios::fixed);
+	cout << "Totally cost of all the packages:$" << totalCost << endl;
 	system("Pause");
 	return 0;
 }
