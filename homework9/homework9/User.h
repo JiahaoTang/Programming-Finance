@@ -3,6 +3,7 @@
 
 using namespace std;
 
+/*Declaration of class User.*/
 class User {
 public:
 	User();
@@ -13,6 +14,7 @@ public:
 	string getState();
 	string getZipCode();
 private:
+	/*Member variables.*/
 	string name;
 	string address;
 	string city;

@@ -3,7 +3,8 @@
 #include "User.h"
 
 using namespace std;
-
+/*Declaration of class Package.
+  This class is regular package.*/
 class Package {
 public:
 	Package(User, User, int, double);
@@ -15,6 +16,7 @@ public:
 	double getFee();
 	virtual double getFlatFee();
 private:
+	/*Member variables.*/
 	User sender;
 	User receiver;
 	int weight;
