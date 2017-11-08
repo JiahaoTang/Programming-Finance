@@ -12,19 +12,27 @@ using namespace std;
 void outputInfo (Package*);
 
 int main() {
+	cout << fixed << setprecision(2);
+
 	User JohnSmith = User("John Smith", "1 Davidson Road", "Piscataway", "NJ", "08854");
 	User TomSmith = User("Tom Smith", "2 Davidson Road", "Piscataway", "NJ", "08854");
 	User MarySmith = User("MarySmith", "3 Davidson Road", "Piscataway", "NJ", "08854");
 	User JenniferSmith = User("Jennifer Smith", "4 Davidson Road", "Piscataway", "NJ", "08854");
 
-	Package jtPkg = Package(JohnSmith, TomSmith, 10, 0.5);
-	Package mjPkg = TwoDayPackage(MarySmith, JenniferSmith, 5, 0.5, 2);
-	Package jmPkg = OvernightPackage(JohnSmith, MarySmith, 2, 0.5, 5);
-
 	vector< Package * > vectorOfPackage(3);
-	vectorOfPackage[0] = &jtPkg;
-	vectorOfPackage[1] = &mjPkg;
-	vectorOfPackage[2] = &jmPkg;
+    Package pkg(JohnSmith, TomSmith, 10, 0.5);
+    TwoDayPackage twoDayPkg(MarySmith, JenniferSmith, 5, 0.5, 2);
+    OvernightPackage overnightPkg(JohnSmith, MarySmith, 2, 0.5, 5);
+    
+    vectorOfPackage[0] = &pkg;
+    vectorOfPackage[1] = &twoDayPkg;
+    vectorOfPackage[2] = &overnightPkg;
+
+	cout << "Package delivery services program" << endl;
+	cout << endl;
+	cout << "Cost per ounce for a package:  $" << vectorOfPackage[0]->getFee() << "/ounce" << endl;
+	cout << "Additional cost for two day delivery:  $" << vectorOfPackage[1]->getFlatFee() << "/ounce" << endl;
+	cout << "Cost per ounce for a package:  $" << vectorOfPackage[2]->getFlatFee() << "/ounce" << endl;
 
 	double totalCost = 0;
 	for (int i = 0; i < 3; i++) {
@@ -33,9 +41,8 @@ int main() {
 		outputInfo(vectorOfPackage[i]);
 		totalCost += (*vectorOfPackage[i]).calculateCost();
 	}
-	cout.precision(2);
-	cout.setf(ios::fixed);
 	cout << "Totally cost of all the packages:$" << totalCost << endl;
+    
 	system("Pause");
 	return 0;
 }
@@ -55,8 +62,6 @@ void outputInfo (Package* pkg) {
 
 	cout << "Weight of package: " << (*pkg).getWeight() << " ounces" << endl;
 	cout << "Type of delivery: " << (*pkg).getType() << endl;
-	cout.precision(2);
-	cout.setf(ios::fixed);
 	cout << "Cost of Package: $" << (*pkg).calculateCost() << endl;
 	cout << endl;
 }

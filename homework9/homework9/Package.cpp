@@ -12,7 +12,7 @@ Package::Package(User senderIn, User receiverIn, int weightIn, double cost) {
 }
 
 double Package::calculateCost() {
-	return weight * costPerOunce;
+	return getWeight() * costPerOunce;
 }
 
 User Package::getSender() {
@@ -29,4 +29,12 @@ int Package::getWeight() {
 
 string Package::getType() {
 	return type;
+}
+
+double Package::getFee() {
+	return costPerOunce;
+}
+
+double Package::getFlatFee() {
+	return 0;
 }

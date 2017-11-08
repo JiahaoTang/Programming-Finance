@@ -7,11 +7,13 @@ using namespace std;
 class Package {
 public:
 	Package(User, User, int, double);
-	double calculateCost();
+	virtual double calculateCost();
 	User getSender();
 	User getReceiver();
 	int getWeight();
 	string getType();
+	double getFee();
+	virtual double getFlatFee();
 private:
 	User sender;
 	User receiver;
