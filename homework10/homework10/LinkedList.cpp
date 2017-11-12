@@ -14,7 +14,7 @@ LinkedList::~LinkedList() {
 int LinkedList::size() {
 	return Size;
 }
-
+/*OK*/
 void LinkedList::addToStart(Node *newNode) {
 	if (size() == 0) {
 		head = newNode;
@@ -26,7 +26,7 @@ void LinkedList::addToStart(Node *newNode) {
 		Size++;
 	}
 }
-
+/*OK*/
 void LinkedList::addToEnd(Node *newNode) {
 	if (size() == 0) {
 		tail = newNode;
@@ -38,24 +38,35 @@ void LinkedList::addToEnd(Node *newNode) {
 		Size++;
 	}
 }
-
+/*OK*/
 void LinkedList::printList() {
 	Node *ptr = head;
-	while (ptr != NULL) {
-		cout << ptr->itemNo << " " << ptr->itemName << endl;
-		ptr = ptr->next;
+	cout << "------list------" << endl;
+	if (size() == 0) {
+		cout << "There is no item in the shopping list!" << endl;
 	}
+	else {
+		for (int i = 0; i < size(); i++) {
+				cout << ptr->itemNo << " " << ptr->itemName << endl;
+				ptr = ptr->next;
+			}
+	}
+	cout << "----------------" << endl;
 }
-
+/*OK*/
 bool LinkedList::removeFromStart() {
 	if (size() == 0) return false;
 	else if (size() != 1) {
+		Node *ptr = head;
 		head = head->next;
+		delete ptr;
 		Size--;
 		return true;
 	} else {
+		Node *ptr = head;
 		head = NULL;
 		tail = head;
+		delete ptr;
 		Size--;
 		return true;
 	}
@@ -65,55 +76,65 @@ bool LinkedList::removeFromEnd() {
 	if (size() == 0) return false;
 	else if (size() != 1) {
 		Node *ptr = head;
-		while (ptr->next->next != NULL) {
+		while (ptr->next != tail) {
 			ptr = ptr->next;
 		}
+		delete tail;
 		tail = ptr;
 		Size--;
 		return true;
 	}
 	else {
+		Node *ptr = tail;
 		head = NULL;
 		tail = head;
+		delete ptr;
 		Size--;
 		return true;
 	}
 }
 
 void LinkedList::removeNodeFromList(int no) {
-	if (no > size()) {
-		cout << "There is no such item." << endl;
-	} else if(no == size()) {
-		removeFromEnd();
-	}
-	else if (no == 1) removeFromStart();
+	Node *ptr = head;
+	if (ptr->itemNo == no) { removeFromStart(); }
 	else {
-		int counter = 0;
-		Node *ptr = head;
-		while (counter != no - 1) {
+		while (ptr->next->itemNo != no) {
+			if (ptr->next == NULL) {
+				cout << "There is no such item in the shopping list!" << endl;
+				return;
+			}
 			ptr = ptr->next;
-			counter++;
 		}
-		ptr->next = ptr->next->next;
-		Size--;
+		if (ptr->next->next == NULL) {
+			removeFromEnd();
+		} else {
+			Node *deleteItem = ptr->next;
+			ptr->next = ptr->next->next;
+			delete deleteItem;
+		}
 	}
+	Size--;
 }
 
 void LinkedList::removeNodeFromList(string name) {
 	Node *ptr = head;
-	if (name == ptr->itemName) {
-		removeFromStart();
-		return;
-	}
-	while (name != ptr->next->itemName) {
-		ptr = ptr->next;
-	}
-	if (ptr->next == tail) {
-		removeFromEnd();
-		return;
-	}
+	if (ptr->itemName == name) { removeFromStart(); }
 	else {
-		ptr->next = ptr->next->next;
-		Size--;
+		while (ptr->next->itemName != name) {
+			if (ptr->next == NULL) {
+				cout << "There is no such item in the shopping list!" << endl;
+				return;
+			}
+			ptr = ptr->next;
+		}
+		if (ptr->next->next == NULL) {
+			removeFromEnd();
+		}
+		else {
+			Node *deleteItem = ptr->next;
+			ptr->next = ptr->next->next;
+			delete deleteItem;
+		}
 	}
+	Size--;
 }
