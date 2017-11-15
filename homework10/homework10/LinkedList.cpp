@@ -111,9 +111,9 @@ void LinkedList::removeNodeFromList(int no) {
 			Node *deleteItem = ptr->next;
 			ptr->next = ptr->next->next;
 			delete deleteItem;
+			Size--;
 		}
 	}
-	Size--;
 }
 
 void LinkedList::removeNodeFromList(string name) {
@@ -134,7 +134,7 @@ void LinkedList::removeNodeFromList(string name) {
 			Node *deleteItem = ptr->next;
 			ptr->next = ptr->next->next;
 			delete deleteItem;
+			Size--;
 		}
 	}
-	Size--;
 }
