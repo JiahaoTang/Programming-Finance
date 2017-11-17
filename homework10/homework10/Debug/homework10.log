@@ -1,3 +1,4 @@
-﻿  LinkedList.cpp
+﻿  main.cpp
+c:\users\administrator\desktop\programming_finance\hw\homework10\homework10\main.cpp(12): warning C4101: “ptr”: 未引用的局部变量
   homework10.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\homework10\Debug\homework10.exe
   homework10.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\homework10\Debug\homework10.pdb (Partial PDB)
