@@ -1,6 +1,7 @@
 #pragma once
 #include "Node.h"
 
+/*Declaration of class LinkedList*/
 class LinkedList {
 public:
 	LinkedList();

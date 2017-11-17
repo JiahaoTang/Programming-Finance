@@ -3,6 +3,7 @@
 
 using namespace std;
 
+/*Constructor*/
 LinkedList::LinkedList() {
 	Size = 0;
 }
@@ -11,10 +12,12 @@ LinkedList::~LinkedList() {
 
 }
 
+/*Return the size of linkedlist.*/
 int LinkedList::size() {
 	return Size;
 }
-/*OK*/
+
+/*The function for add an item to the begining of linkedlist.*/
 void LinkedList::addToStart(Node *newNode) {
 	if (size() == 0) {
 		head = newNode;
@@ -26,7 +29,8 @@ void LinkedList::addToStart(Node *newNode) {
 		Size++;
 	}
 }
-/*OK*/
+
+/*The function for add an item to the end of linkedlist.*/
 void LinkedList::addToEnd(Node *newNode) {
 	if (size() == 0) {
 		tail = newNode;
@@ -38,7 +42,8 @@ void LinkedList::addToEnd(Node *newNode) {
 		Size++;
 	}
 }
-/*OK*/
+
+/*The function for print out the linkedlist.*/
 void LinkedList::printList() {
 	Node *ptr = head;
 	cout << "------list------" << endl;
@@ -53,7 +58,8 @@ void LinkedList::printList() {
 	}
 	cout << "----------------" << endl;
 }
-/*OK*/
+
+/*The function for removing the item from the begining of linkedlist.*/
 bool LinkedList::removeFromStart() {
 	if (size() == 0) return false;
 	else if (size() != 1) {
@@ -72,6 +78,7 @@ bool LinkedList::removeFromStart() {
 	}
 }
 
+/*The function for removing the item from the end of linkedlist.*/
 bool LinkedList::removeFromEnd() {
 	if (size() == 0) return false;
 	else if (size() != 1) {
@@ -94,6 +101,7 @@ bool LinkedList::removeFromEnd() {
 	}
 }
 
+/*The function for removing the specified item according to its number.*/
 void LinkedList::removeNodeFromList(int no) {
 	Node *ptr = head;
 	if (ptr->itemNo == no) { removeFromStart(); }
@@ -116,6 +124,7 @@ void LinkedList::removeNodeFromList(int no) {
 	}
 }
 
+/*The function for removing the specified item according to its name.*/
 void LinkedList::removeNodeFromList(string name) {
 	Node *ptr = head;
 	if (ptr->itemName == name) { removeFromStart(); }

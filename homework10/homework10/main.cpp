@@ -9,15 +9,18 @@ void instructions();
 
 int main() {
 	int choice;
-	//int itemNo = 0;
-	//string itemName = "start";
 	Node* ptr;
+	/*Initialized the linkedlist.*/
 	LinkedList list = LinkedList();
 	cout << "Welcome to the shopping list program" << endl;
 	while (true) {
+		/*Printed out the instruction of this program.*/
 		instructions();
 		cin >> choice;
+		/*Called different functions according to the choice from users.*/
 		switch (choice) {
+
+		/*Added item at the begining of the list.*/
 		case 1:{
 			cout << "Please enter product number to insert at beginning" << endl;
 			int itemNo;
@@ -29,6 +32,8 @@ int main() {
 			list.printList();
 			break;
 		}
+
+		/*Added item at the end of the list.*/
 		case 2:{
 			cout << "Please enter product number to insert at end" << endl;
 			int itemNo;
@@ -40,6 +45,7 @@ int main() {
 			list.printList();
 			break;
 		}
+		/*Removed the beginging node of the linkedlist.*/
 		case 3:{
 			if (list.removeFromStart()) {
 				cout << "Remove first item complete!" << endl;
@@ -50,6 +56,7 @@ int main() {
 			}
 			break;
 		}
+		/*Removed the end node of the linkedlist.*/
 		case 4:{
 			if (list.removeFromEnd()) {
 				cout << "Remove last item complete!" << endl;
@@ -60,6 +67,7 @@ int main() {
 			}
 			break;
 		}
+		/*Removed the specified node of the linkedlist according to the number.*/
 		case 5: {
 			if (list.size() == 0) {
 				list.printList();
@@ -72,6 +80,7 @@ int main() {
 			}
 			break;
 		}
+		/*Removed the specified node of the linkedlist according to the name.*/
 		case 6: {
 			if (list.size() == 0) {
 				list.printList();
@@ -85,10 +94,12 @@ int main() {
 			}
 			break;
 		}
+		/*Printed out the linkedlist.*/
 		case 7: {
 			list.printList();
 			break;
 		}
+		/*Exit the program.*/
 		case 8:
 			system("Pause");
 			return 0;
@@ -96,6 +107,7 @@ int main() {
 	}
 }
 
+/*The function for print out the instructions*/
 void instructions() {
 	cout << "Please choose an option:" << endl;
 	cout << "1.  Add a new node at the beginning" << endl;
