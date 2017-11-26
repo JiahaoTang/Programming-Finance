@@ -28,5 +28,27 @@ void DLList::addLast(Stock* newNode) {
 	newNode->back = sentinel;
 	sentinel->pre->back = newNode;
 	sentinel->pre = newNode;
+	listSize++;
+	totalValue += newNode->getValue;
 }
 
+void DLList::removeLast() {
+	sentinel->pre->pre->back = sentinel;
+	Stock* lastNode = sentinel->pre;
+	sentinel->pre = sentinel->pre->pre;
+	totalValue -= lastNode->getValue;
+	delete lastNode;
+	listSize--;
+}
+
+double DLList::getTotalValue() {
+	return totalValue;
+}
+
+void DLList::sortOne() {
+
+}
+
+void DLList::sortTwo() {
+
+}

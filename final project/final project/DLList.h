@@ -19,6 +19,7 @@ public:
 	int size();
 	void addLast(Stock* newNode);
 	void removeLast();
+	double getTotalValue();
 	void sortOne();
 	void sortTwo();
 private:

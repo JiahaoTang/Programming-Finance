@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="BankAccount.h" />
     <ClInclude Include="DLList.h" />
     <ClInclude Include="Stock.h" />
     <ClInclude Include="StockAccount.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BankAccount.cpp" />
     <ClCompile Include="DLList.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stock.cpp" />

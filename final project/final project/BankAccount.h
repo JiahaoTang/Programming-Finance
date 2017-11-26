@@ -1,25 +1,26 @@
 ﻿//
-//  StockBank.h
+//  BankAccount.h
 //  FinalProject
 //
 //  Created by JiahaoTang on 2017/11/25.
 //  Copyright © 2017年 JiahaoTang. All rights reserved.
 //
-#ifndef StockBank_h
-#define StockBank_h
+#ifndef BankAccount_h
+#define BankAccount_h
 #include <string>
-#include "DLList.h"
+#include "Account.h"
 
 using namespace std;
 
-class StockBank {
+class BankAccount : public Account{
 public:
-	StockBank();
-	void deposit(int amount);
-	int withdraw(int amount);
+	BankAccount(double cash);
+	void setCashBalance(double cash);
+	void deposit(double amount);
+	double withdraw(double amount);
 	void printHistory();
 private:
-	double cash;
+	double cashBalance;
 };
 
-#endif /* StockBank_h */
+#endif /* BankAccount_h */
