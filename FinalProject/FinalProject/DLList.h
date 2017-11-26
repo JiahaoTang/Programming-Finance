@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class DLList{
+class DLList {
 public:
 private:
-    Stock *
-}
+//	Stock *
+};
 #endif /* DLList_h */
