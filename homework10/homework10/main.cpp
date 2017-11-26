@@ -86,7 +86,7 @@ int main() {
 				list.printList();
 			}
 			else {
-				strng itemName;
+				string itemName;
 				cout << "Please enter product name to delete from shopping list: " << endl;
 				cin >> itemName;
 				list.removeNodeFromList(itemName);
