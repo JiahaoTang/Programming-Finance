@@ -21,9 +21,21 @@
     <ClInclude Include="DLList.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StockAccount.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BankAccount.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Stock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DLList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

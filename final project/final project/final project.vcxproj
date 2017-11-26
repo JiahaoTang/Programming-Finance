@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BankAccount.h" />
     <ClInclude Include="DLList.h" />
     <ClInclude Include="Stock.h" />
+    <ClInclude Include="StockAccount.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DLList.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Stock.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

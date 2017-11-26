@@ -13,13 +13,16 @@ using namespace std;
 
 class Stock{
 public:
-    int getPrice();
+	Stock(string, double, int);
+	double getPrice();
     int getShares();
     string getName();
-    int getValue();
+    double getValue();
+	Stock* pre;
+	Stock* back;
 private:
     string companySymbol;
-    int price;
+	double price;
     int shares;
 };
 
