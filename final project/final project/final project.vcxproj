@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DLList.h" />
+    <ClInclude Include="Stock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{51BE883B-DBD1-4240-BB2F-519504C53D36}</ProjectGuid>
@@ -146,13 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\FinalProject\FinalProject\DLList.h" />
-    <ClInclude Include="..\..\FinalProject\FinalProject\Stock.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\FinalProject\FinalProject\main.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

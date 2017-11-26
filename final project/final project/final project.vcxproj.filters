@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\FinalProject\FinalProject\DLList.h">
+    <ClInclude Include="Stock.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\FinalProject\FinalProject\Stock.h">
+    <ClInclude Include="DLList.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\FinalProject\FinalProject\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
