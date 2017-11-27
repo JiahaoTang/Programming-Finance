@@ -16,7 +16,6 @@ BankAccount::BankAccount() {
 		file.close();
 
 		/*Initialized the bank account history file.*/
-		ofstream file;
 		file.open("bankAccountHistory.txt");
 		file.close();
 	}
@@ -25,7 +24,7 @@ BankAccount::BankAccount() {
 		ifstream OpenFile("bankCashBalance.txt");
 		OpenFile >> cash;
 		setCashBalance(cash);
-		OpenFile.close;
+		OpenFile.close();
 	}
 }
 
@@ -36,16 +35,36 @@ void BankAccount::setCashBalance(double cash) {
 void BankAccount::deposit(double amount) {
 	cashBalance += amount;
 	ofstream file;
+	file.open("bankCashBalance.txt");
+	file << cashBalance << "\n";
+	file.close();
 	file.open("bankAccountHistory.txt", ios::app);
-	file << setw(10) << "deposit" << setw(10) << amount << endl;
+	file << std::left << setw(10) << "Deposit" << std::left << setw(10) << amount << endl;
 	file.close();
 }
 
 double BankAccount::withdraw(double amount) {
 	cashBalance -= amount;
 	ofstream file;
+	file.open("bankCashBalance.txt");
+	file << cashBalance << "\n";
+	file.close();
 	file.open("bankAccountHistory.txt", ios::app);
-	file << setw(10) << "withdraw" << setw(10) << amount << endl;
+	file << std::left << setw(10) << "Withdraw" << std::left << setw(10) << amount << endl;
 	file.close();
 	return amount;
+}
+
+void BankAccount::printHistory() {
+	char line[100];
+	ifstream inbk("bankCashBalance.txt");
+	inbk.getline(line, 100);
+	cout << "The cash balance of this account is: " << line << "." << endl;
+
+	ifstream in("bankAccountHistory.txt");
+	while (!in.eof()) {
+		in.getline(line, 100);
+		cout << line << endl;
+	}
+	in.close();
 }

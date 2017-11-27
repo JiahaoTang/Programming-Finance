@@ -1,15 +1,10 @@
-//
-//  main.cpp
-//  FinalProject
-//
-//  Created by 唐嘉豪 on 2017/11/21.
-//  Copyright © 2017年 唐嘉豪. All rights reserved.
-//
-
 #include <iostream>
+#include "BankAccount.h"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+	BankAccount *ba = new BankAccount();
+	ba->deposit(100);
+	ba->withdraw(1500);
+	ba->printHistory();
     return 0;
 }

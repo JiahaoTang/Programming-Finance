@@ -1,10 +1,3 @@
-//
-//  Stock.h
-//  FinalProject
-//
-//  Created by 唐嘉豪 on 2017/11/25.
-//  Copyright © 2017年 唐嘉豪. All rights reserved.
-//
 #include <string>
 #ifndef Stock_h
 #define Stock_h

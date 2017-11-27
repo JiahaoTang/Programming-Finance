@@ -1,28 +1,23 @@
-﻿//
-//  StockAccount.h
-//  FinalProject
-//
-//  Created by JiahaoTang on 2017/11/25.
-//  Copyright © 2017年 JiahaoTang. All rights reserved.
-//
-#ifndef StockAccount_h
+﻿#ifndef StockAccount_h
 #define StockAccount_h
 #include <string>
 #include "DLList.h"
+#include "Account.h"
 
 using namespace std;
 
-class StockAccount {
+class StockAccount : public Account{
 public:
 	StockAccount();
-	void buy();
-	void sell();
+	void setCashBalance(double);
+	void buy(string, string);
+	void sell(string, string);
 	void printPortfolio();
 	double getValue();
 private:
 	DLList portfolio;
 	double totalValue;
-	double cash;
+	double cashBalance;
 };
 
 #endif /* StockAccount_h */

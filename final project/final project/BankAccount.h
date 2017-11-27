@@ -1,18 +1,11 @@
-﻿//
-//  BankAccount.h
-//  FinalProject
-//
-//  Created by JiahaoTang on 2017/11/25.
-//  Copyright © 2017年 JiahaoTang. All rights reserved.
-//
-#ifndef BankAccount_h
+﻿#ifndef BankAccount_h
 #define BankAccount_h
 #include <string>
 #include "Account.h"
 
 using namespace std;
 
-class BankAccount : public Account{
+class BankAccount : public Account {
 public:
 	BankAccount();
 	void setCashBalance(double cash);
