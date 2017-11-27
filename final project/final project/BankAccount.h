@@ -14,7 +14,7 @@ using namespace std;
 
 class BankAccount : public Account{
 public:
-	BankAccount(double cash);
+	BankAccount();
 	void setCashBalance(double cash);
 	void deposit(double amount);
 	double withdraw(double amount);
