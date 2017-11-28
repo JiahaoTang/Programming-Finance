@@ -10,11 +10,14 @@ public:
 	DLList();
 	int size();
 	void addLast(Stock* newNode);
-	void remove(string companySymbol);
+	bool remove(string companySymbol);
 	double getTotalValue();
 	void sortOne();
 	void sortTwo();
 	void updatePortfolio();
+	int getShares(string companySymbol);
+	bool increaseShares(string companySymbol, int shares);
+	bool decreaseShares(string companySymbol, int shares);
 private:
 	Stock *sentinel;
 	int listSize;

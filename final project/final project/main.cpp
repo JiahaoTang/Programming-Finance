@@ -4,8 +4,10 @@
 
 int main(int argc, const char * argv[]) {
 	StockAccount *sa = new StockAccount();
-	sa->buy("Result_1.txt", "INTC", 100);
+	if (!sa->buy("Result_1.txt", "GE", 1000)) 
+		cout << "There is no enough cash." << endl;
 	sa->printPortfolio();
+	cout << endl;
 	sa->printTransactionHistory();
 	system("Pause");
     return 0;

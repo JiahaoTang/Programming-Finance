@@ -26,3 +26,10 @@ string Stock::getName() {
 double Stock::getValue() {
 	return shares * price;
 }
+
+void Stock::increaseShares(int amount) {
+	shares += amount;
+}
+void Stock::decreaseShares(int amount) {
+	shares -= amount;
+}

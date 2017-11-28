@@ -13,6 +13,8 @@ public:
     double getValue();
 	Stock* pre;
 	Stock* back;
+	void increaseShares(int amount);
+	void decreaseShares(int amount);
 private:
     string companySymbol;
 	double price;

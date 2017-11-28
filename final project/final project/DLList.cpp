@@ -26,19 +26,29 @@ void DLList::addLast(Stock* newNode) {
 	totalValue += newNode->getValue();
 }
 
-void DLList::remove(string companySymbol) {
+bool DLList::remove(string companySymbol) {
 	Stock *ptr = sentinel->back;
+	if (ptr->getName() == companySymbol) {
+		Stock *removeNode = ptr;
+		sentinel->back = ptr->back;
+		sentinel->back->pre = sentinel;
+		delete removeNode;
+		listSize--;
+		return true;
+	}
 	Stock *removeNode = new Stock("removeNode", -1, -1);
 	while (ptr != sentinel) {
 		if (ptr->back->getName() == companySymbol) {
 			Stock *removeNode = ptr->back;
 			ptr->back = ptr->back->back;
 			ptr->back->pre = ptr;
+			delete removeNode;
+			listSize--;
+			return true;
 		}
 		ptr = ptr->back;
 	}
-	delete removeNode;
-	listSize--;
+	return false;
 }
 
 double DLList::getTotalValue() {
@@ -64,4 +74,48 @@ void DLList::updatePortfolio() {
 		ptr = ptr->back;
 	}
 	file.close();
+}
+
+int DLList::getShares(string companySymbol) {
+	Stock *ptr = sentinel->back;
+	while (ptr != sentinel) {
+		if (ptr->back->getName() == companySymbol) {
+			return ptr->getShares();
+		}
+		ptr = ptr->back;
+	}
+	return -1;
+}
+
+bool DLList::increaseShares(string companySymbol, int shares) {
+	Stock *ptr = sentinel->back;
+	while (ptr != sentinel) {
+		if (ptr->getName() == companySymbol) {
+			ptr->increaseShares(shares);
+			return true;
+		}
+		ptr = ptr->back;
+	}
+	return false;
+}
+
+bool DLList::decreaseShares(string companySymbol, int shares) {
+	Stock *ptr = sentinel->back;
+	while (ptr != sentinel) {
+		if (ptr->getName() == companySymbol) {
+			if (ptr->getShares() > shares) {
+				ptr->decreaseShares(shares);
+				return true;
+			}
+			else if (ptr->getShares() == shares) {
+				remove(companySymbol);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		ptr = ptr->back;
+	}
+	return false;
 }

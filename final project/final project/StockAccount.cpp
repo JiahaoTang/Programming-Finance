@@ -41,8 +41,9 @@ StockAccount::StockAccount() {
 	Else, read the porfolio and */
 	ifstream portIn("portfolio.txt");
 	if (!portIn.is_open()) {
-		ifstream file;
+		ofstream file;
 		file.open("portfolio.txt");
+		file << std::left << setw(20) << "Company Symbol" << std::left << setw(10) << "Number" << std::left << setw(20) << "Price-per-share" << std::left << setw(10) << "Total value" << "\n";
 		file.close();
 		portfolio = new DLList();
 	}
@@ -78,7 +79,7 @@ void StockAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
-void StockAccount::buy(string fileName, string companySymbol, int shares) {
+bool StockAccount::buy(string fileName, string companySymbol, int shares) {
 	/*Search companySymbol in file.*/
 	ifstream in(fileName);
 	string stockSymbol;
@@ -87,71 +88,85 @@ void StockAccount::buy(string fileName, string companySymbol, int shares) {
 		in >> stockSymbol;
 	}
 	in >> price;
+	if (shares * price <= cashBalance) {
+		/*Initialized newNode and add it into portfolio.*/
+		if (!portfolio->increaseShares(companySymbol, shares)) {
+			Stock *newNode = new Stock(companySymbol, price, shares);
+			portfolio->addLast(newNode);
+		}
 
-	/*Initialized newNode and add it into portfolio.*/
-	Stock *newNode = new Stock(companySymbol, price, shares);
-	portfolio->addLast(newNode);
+		/*Store it into transaction history.*/
+		ofstream file;
+		file.open("transactionHistory.txt", ios::app);
+		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(9) << price * shares << "\n";
+		file.close();
 
-	/*Store it into transaction history.*/
-	ofstream file;
-	file.open("transactionHistory.txt", ios::app);
-	file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(9) << price * shares << "\n";
-	file.close();
+		/*Updated the portfolio.txt.*/
+		portfolio->updatePortfolio();
 
-	/*Updated the portfolio.txt.*/
-	portfolio->updatePortfolio();
+		/*Increased total value*/
+		totalValue += price * shares;
 
-	/*Increased total value*/
-	totalValue += price * shares;
-
-	/*Updated cashBalance.txt*/
-	cashBalance -= price * shares;
-	file.open("bankCashBalance.txt");;
-	file << cashBalance << "\n";
-	file.close();
+		/*Updated cashBalance.txt*/
+		cashBalance -= price * shares;
+		file.open("bankCashBalance.txt");;
+		file << cashBalance << "\n";
+		file.close();
+		return true;
+	}
+	else {
+		return false;
+	}
+	
 }
 
-void StockAccount::sell(string fileName, string companySymbol, int shares) {
+bool StockAccount::sell(string fileName, string companySymbol, int shares) {
 	/*Search companySymbol in DLList.*/
-	portfolio->remove(companySymbol);
+	if (portfolio->decreaseShares(companySymbol, shares)) {
+		/*Search stock in file and get the price.*/
+		ifstream in(fileName);
+		string stockSymbol;
+		double price;
+		while (stockSymbol != companySymbol) {
+			in >> stockSymbol;
+		}
+		in >> price;
 
-	/*Search stock in file and get the price.*/
-	ifstream in(fileName);
-	string stockSymbol;
-	double price;
-	while (stockSymbol != companySymbol) {
-		in >> stockSymbol;
+		/*Store it into transaction history.*/
+		ofstream file;
+		file.open("transactionHistory.txt", ios::app);
+		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(9) << price * shares << "\n";
+		file.close();
+
+		/*Updated the portfolio.txt.*/
+		portfolio->updatePortfolio();
+
+		/*Increased total value*/
+		totalValue -= price * shares;
+
+		/*Updated cashBalance.txt*/
+		cashBalance += price * shares;
+		file.open("bankCashBalance.txt");;
+		file << cashBalance << "\n";
+		file.close();
+		return true;
 	}
-	in >> price;
-
-	/*Store it into transaction history.*/
-	ofstream file;
-	file.open("transactionHistory.txt", ios::app);
-	file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(10) << "$" << price << std::left << setw(10) << "$" << price * shares << "\n";
-	file.close();
-
-	/*Updated the portfolio.txt.*/
-	portfolio->updatePortfolio();
-
-	/*Increased total value*/
-	totalValue -= price * shares;
-
-	/*Updated cashBalance.txt*/
-	cashBalance += price * shares;
-	file.open("bankCashBalance.txt");;
-	file << cashBalance << "\n";
-	file.close();
+	else {
+		return false;
+	}
 }
 
 void StockAccount::printPortfolio() {
+	cout << "Cash Balance = $" << cashBalance << endl;
 	char line[100];
 	ifstream file;
 	file.open("portfolio.txt"); 
 	while (!file .eof()) {
 		file.getline(line, 100);
-		cout << line << endl;
+		cout << line << "\n";
 	}
 	file.close();
+	cout << "Total Portfolio Value = $" << cashBalance + getValue() << endl;
 }
 
 void StockAccount::printTransactionHistory() {

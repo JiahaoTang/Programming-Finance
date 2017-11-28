@@ -1,4 +1,1 @@
 Company Symbol      Number    Price-per-share     Total value
-AIG                 100       35.1                3510                
-GE                  100       15.59               1559                
-INTC                100       19.24               1924                
