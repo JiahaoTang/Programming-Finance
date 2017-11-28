@@ -55,6 +55,7 @@ StockAccount::StockAccount() {
 		string name;
 		double price;
 		int shares;
+		double value;
 		portfolio = new DLList();
 		while (!portIn.eof()) {
 			if (counter % 4 == 0 && counter > 0) {
@@ -65,6 +66,7 @@ StockAccount::StockAccount() {
 			if (counter % 4 == 0 && counter == 0) portIn >> name;
 			if (counter % 4 == 1) portIn >> shares;
 			if (counter % 4 == 2) portIn >> price;
+			if (counter % 4 == 3) portIn >> value;
 			counter++;
 		}
 		totalValue = portfolio->getTotalValue();
