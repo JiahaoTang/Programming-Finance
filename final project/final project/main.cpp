@@ -1,10 +1,12 @@
 #include <iostream>
 #include "BankAccount.h"
+#include "StockAccount.h"
 
 int main(int argc, const char * argv[]) {
-	BankAccount *ba = new BankAccount();
-	ba->deposit(100);
-	ba->withdraw(1500);
-	ba->printHistory();
+	StockAccount *sa = new StockAccount();
+	sa->buy("Result_1.txt", "INTC", 100);
+	sa->printPortfolio();
+	sa->printTransactionHistory();
+	system("Pause");
     return 0;
 }

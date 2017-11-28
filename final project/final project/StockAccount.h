@@ -10,12 +10,13 @@ class StockAccount : public Account{
 public:
 	StockAccount();
 	void setCashBalance(double);
-	void buy(string, string);
-	void sell(string, string);
+	void buy(string, string, int);
+	void sell(string, string, int);
 	void printPortfolio();
+	void printTransactionHistory();
 	double getValue();
 private:
-	DLList portfolio;
+	DLList *portfolio;
 	double totalValue;
 	double cashBalance;
 };

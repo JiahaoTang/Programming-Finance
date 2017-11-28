@@ -1,12 +1,4 @@
-﻿//
-//  Stock.cpp
-//  FinalProject
-//
-//  Created by 唐嘉豪 on 2017/11/25.
-//  Copyright © 2017年 唐嘉豪. All rights reserved.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include "Stock.h"
 
 using namespace std;
