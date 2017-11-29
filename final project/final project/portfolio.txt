@@ -1,2 +1,4 @@
 Company Symbol      Number    Price-per-share     Total value
-GE                  190       15.59               2962.1              
+GE                  20        15.59               311.8               
+MSFT                70        29.62               2073.4              
+DIS                 50        30.01               1500.5              

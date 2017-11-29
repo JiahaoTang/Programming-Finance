@@ -32,6 +32,7 @@ bool DLList::remove(string companySymbol) {
 		Stock *removeNode = ptr;
 		sentinel->back = ptr->back;
 		sentinel->back->pre = sentinel;
+		totalValue -= removeNode->getShares() * removeNode->getPrice();
 		delete removeNode;
 		listSize--;
 		return true;
@@ -42,6 +43,7 @@ bool DLList::remove(string companySymbol) {
 			Stock *removeNode = ptr->back;
 			ptr->back = ptr->back->back;
 			ptr->back->pre = ptr;
+			totalValue -= removeNode->getShares() * removeNode->getPrice();
 			delete removeNode;
 			listSize--;
 			return true;
@@ -92,6 +94,7 @@ bool DLList::increaseShares(string companySymbol, int shares) {
 	while (ptr != sentinel) {
 		if (ptr->getName() == companySymbol) {
 			ptr->increaseShares(shares);
+			totalValue += shares * ptr->getPrice();
 			return true;
 		}
 		ptr = ptr->back;
@@ -105,6 +108,7 @@ bool DLList::decreaseShares(string companySymbol, int shares) {
 		if (ptr->getName() == companySymbol) {
 			if (ptr->getShares() > shares) {
 				ptr->decreaseShares(shares);
+				totalValue -= shares * ptr->getPrice();
 				return true;
 			}
 			else if (ptr->getShares() == shares) {

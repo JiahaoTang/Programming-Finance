@@ -1,0 +1,6 @@
+Withdraw  1559      
+Withdraw  2962      
+Withdraw  3001      
+Deposit   1327.2    
+Deposit   918.6     
+Deposit   1550.5    

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "StockAccount.h"
+#include "BankAccount.h"
 #include <iomanip>
 
 using namespace std;
@@ -106,13 +107,15 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 		portfolio->updatePortfolio();
 
 		/*Increased total value*/
-		totalValue += price * shares;
+		totalValue = portfolio->getTotalValue();
 
 		/*Updated cashBalance.txt*/
-		cashBalance -= price * shares;
-		file.open("bankCashBalance.txt");;
-		file << cashBalance << "\n";
-		file.close();
+		BankAccount *bk = new BankAccount();
+		bk->withdraw(price * shares);
+		ifstream in;
+		in.open("bankCashBalance.txt");
+		in >> cashBalance;
+		in.close();
 		return 0;
 	}
 	else if(price > buyPrice && shares * price > cashBalance){
@@ -151,13 +154,15 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 		portfolio->updatePortfolio();
 
 		/*Increased total value*/
-		totalValue -= price * shares;
+		totalValue = portfolio->getTotalValue();
 
 		/*Updated cashBalance.txt*/
-		cashBalance += price * shares;
-		file.open("bankCashBalance.txt");;
-		file << cashBalance << "\n";
-		file.close();
+		BankAccount *bk = new BankAccount();
+		bk->deposit(price * shares);
+		ifstream in;
+		in.open("bankCashBalance.txt");
+		in >> cashBalance;
+		in.close();
 		return 0;
 	}
 	else {
@@ -166,6 +171,10 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 }
 
 void StockAccount::printPortfolio() {
+	ifstream in;
+	in.open("bankCashBalance.txt");
+	in >> cashBalance;
+	in.close();
 	cout << "Cash Balance = $" << cashBalance << endl;
 	char line[100];
 	ifstream file;
