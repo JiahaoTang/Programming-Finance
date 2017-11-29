@@ -1,1 +1,2 @@
 Company Symbol      Number    Price-per-share     Total value
+GE                  190       15.59               2962.1              

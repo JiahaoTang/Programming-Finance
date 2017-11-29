@@ -1,1 +1,12 @@
 Event     Company Symbol      Number    Price     Total value
+Buy       GE                  100       $15.59    $1559     
+Sell      GE                  10        $15.59    $155.9    
+Buy       GE                  100       $15.59    $1559     
+Buy       GE                  100       $15.59    $1559     
+Buy       GE                  100       $15.59    $1559     
+Buy       GE                  100       $15.59    $1559     
+Buy       GE                  100       $15.59    $1559     
+Sell      GE                  100       $15.59    $1559     
+Sell      GE                  100       $15.59    $1559     
+Sell      GE                  100       $15.59    $1559     
+Sell      GE                  100       $15.59    $1559     

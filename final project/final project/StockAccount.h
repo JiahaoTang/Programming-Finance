@@ -10,8 +10,8 @@ class StockAccount : public Account{
 public:
 	StockAccount();
 	void setCashBalance(double);
-	bool buy(string, string, int);
-	bool sell(string, string, int);
+	int buy(string, string, int, double);
+	int sell(string, string, int, double);
 	void printPortfolio();
 	void printTransactionHistory();
 	double getValue();

@@ -79,16 +79,17 @@ void StockAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
-bool StockAccount::buy(string fileName, string companySymbol, int shares) {
+int StockAccount::buy(string fileName, string companySymbol, int shares, double buyPrice) {
 	/*Search companySymbol in file.*/
 	ifstream in(fileName);
 	string stockSymbol;
 	double price;
-	while (stockSymbol != companySymbol) {
+	while (stockSymbol != companySymbol && !in.eof()) {
 		in >> stockSymbol;
 	}
+	if (in.eof()) return -4;
 	in >> price;
-	if (shares * price <= cashBalance) {
+	if (shares * price <= cashBalance && price <= buyPrice) {
 		/*Initialized newNode and add it into portfolio.*/
 		if (!portfolio->increaseShares(companySymbol, shares)) {
 			Stock *newNode = new Stock(companySymbol, price, shares);
@@ -112,26 +113,34 @@ bool StockAccount::buy(string fileName, string companySymbol, int shares) {
 		file.open("bankCashBalance.txt");;
 		file << cashBalance << "\n";
 		file.close();
-		return true;
+		return 0;
 	}
-	else {
-		return false;
+	else if(price > buyPrice && shares * price > cashBalance){
+		return -3;
+	}
+	else if (shares * price > cashBalance) {
+		return -2;
+	}
+	else if (price > buyPrice) {
+		return -1;
 	}
 	
 }
 
-bool StockAccount::sell(string fileName, string companySymbol, int shares) {
+int StockAccount::sell(string fileName, string companySymbol, int shares, double sellPrice) {
+	/*Search stock in file and get the price.*/
+	ifstream in(fileName);
+	string stockSymbol;
+	double price;
+	while (stockSymbol != companySymbol && !in.eof()) {
+		in >> stockSymbol;
+	}
+	if (in.eof()) return -2;
+	in >> price;
+	if (price < sellPrice) return -1;
+
 	/*Search companySymbol in DLList.*/
 	if (portfolio->decreaseShares(companySymbol, shares)) {
-		/*Search stock in file and get the price.*/
-		ifstream in(fileName);
-		string stockSymbol;
-		double price;
-		while (stockSymbol != companySymbol) {
-			in >> stockSymbol;
-		}
-		in >> price;
-
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);
@@ -149,10 +158,10 @@ bool StockAccount::sell(string fileName, string companySymbol, int shares) {
 		file.open("bankCashBalance.txt");;
 		file << cashBalance << "\n";
 		file.close();
-		return true;
+		return 0;
 	}
 	else {
-		return false;
+		return -3;
 	}
 }
 
