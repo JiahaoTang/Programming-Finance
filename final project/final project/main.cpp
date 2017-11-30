@@ -8,8 +8,8 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-	/*StockAccount *sa = new StockAccount();
-	int tag1 = sa->buy("Result_1.txt", "GE", 100, 16.00);
+	StockAccount *sa = new StockAccount();
+	int tag = sa->buy("Result_1.txt", "GE", 499, 16.00);
 	switch (tag) {
 		case 0: {
 			cout << "Sell successfully." << endl;
@@ -31,7 +31,8 @@ int main(int argc, const char * argv[]) {
 	
 	sa->printPortfolio();
 	cout << endl;
-	sa->printTransactionHistory();*/
+	sa->printTransactionHistory();
+
 	/*ofstream file;
 	file.open("time.txt");
 	time_t seconds;
@@ -40,18 +41,19 @@ int main(int argc, const char * argv[]) {
 	char date[12];
 	tm * timeinfo;
 	timeinfo = localtime(&seconds);
-	strftime(date, 100, "%D", timeinfo);	cout << date;	file << date;*/
+	strftime(date, 100, "%X", timeinfo);	cout << date;	file << date;*/
 	
 	/*string time;
 	ifstream file;
 	file.open("time.txt");
 	file >> time;
 	cout << time;*/
-	BankAccount *bk = new BankAccount();
+	/*BankAccount *bk = new BankAccount();
 	bk->deposit(100);
 	bk->deposit(1222);
 	bk->withdraw(200);
-	bk->printHistory();
+	bk->printHistory();*/
+	
 	
 	system("Pause");
     return 0;

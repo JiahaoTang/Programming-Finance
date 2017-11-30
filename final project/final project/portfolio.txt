@@ -1,0 +1,2 @@
+Company Symbol      Number    Price-per-share     Total value
+GE                  600       15.59               9354                

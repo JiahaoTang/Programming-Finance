@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include "StockAccount.h"
@@ -34,7 +35,7 @@ StockAccount::StockAccount() {
 	if (!historyIn.is_open()) {
 		ofstream file;
 		file.open("transactionHistory.txt");
-		file << std::left << setw(10) << "Event" << std::left << setw(20) << "Company Symbol" << std::left << setw(10) << "Number" << std::left << setw(10) << "Price" << std::left << setw(10) << "Total value" << "\n";
+		file << std::left << setw(10) << "Event" << std::left << setw(20) << "Company Symbol" << std::left << setw(10) << "Number" << std::left << setw(10) << "Price" << std::left << setw(15) << "Total value" << std::left << setw(10) << "Time" << "\n";
 		file.close();
 	}
 
@@ -100,7 +101,14 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);
-		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(9) << price * shares << "\n";
+		//calcuate the date.
+		time_t seconds;
+		seconds = time(NULL);
+		char date[12];
+		tm * timeinfo;
+		timeinfo = localtime(&seconds);
+		strftime(date, 100, "%X", timeinfo);
+		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << date << "\n";
 		file.close();
 
 		/*Updated the portfolio.txt.*/
@@ -147,7 +155,14 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);
-		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(9) << price * shares << "\n";
+		//calcuate the date.
+		time_t seconds;
+		seconds = time(NULL);
+		char date[12];
+		tm * timeinfo;
+		timeinfo = localtime(&seconds);
+		strftime(date, 100, "%X", timeinfo);
+		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << date << "\n";
 		file.close();
 
 		/*Updated the portfolio.txt.*/
@@ -192,7 +207,7 @@ void StockAccount::printTransactionHistory() {
 	ifstream file;
 	file.open("transactionHistory.txt");
 	while (!file.eof()) {
-		file.getline(line, 100);
+		file.getline(line, 200);
 		cout << line << endl;
 	}
 	file.close();

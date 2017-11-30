@@ -1,0 +1,3 @@
+Event     Company Symbol      Number    Price     Total value    Time      
+Buy       GE                  100       $15.59    $1559          11:22:47  
+Buy       GE                  500       $15.59    $7795          11:22:55  
