@@ -1,7 +1,0 @@
-Event     Company Symbol      Number    Price     Total value
-Buy       GE                  100       $15.59    $1559     
-Buy       MSFT                100       $29.62    $2962     
-Buy       DIS                 100       $30.01    $3001     
-Sell      GE                  80        $16.59    $1327.2   
-Sell      MSFT                30        $30.62    $918.6    
-Sell      DIS                 50        $31.01    $1550.5   

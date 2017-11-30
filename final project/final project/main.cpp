@@ -1,16 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "BankAccount.h"
 #include "StockAccount.h"
+#include <time.h>
+#include <fstream>
+
+using namespace std;
 
 int main(int argc, const char * argv[]) {
-	StockAccount *sa = new StockAccount();
+	/*StockAccount *sa = new StockAccount();
 	int tag1 = sa->buy("Result_1.txt", "GE", 100, 16.00);
-	int tag2 = sa->buy("Result_1.txt", "MSFT", 100, 30.00);
-	int tag3 = sa->buy("Result_1.txt", "DIS", 100, 31.00);
-	int tag4 = sa->sell("Result_2.txt", "GE", 80, 15.00);
-	int tag5 = sa->sell("Result_2.txt", "MSFT", 30, 30.00);
-	int tag6 = sa->sell("Result_2.txt", "DIS", 50, 31.00);
-	/*switch (tag) {
+	switch (tag) {
 		case 0: {
 			cout << "Sell successfully." << endl;
 			break;
@@ -27,11 +27,32 @@ int main(int argc, const char * argv[]) {
 			cout << "The shares of this stock is not enough." << endl;
 			break;
 		}
-	}*/
+	}
 	
 	sa->printPortfolio();
 	cout << endl;
-	sa->printTransactionHistory();
+	sa->printTransactionHistory();*/
+	/*ofstream file;
+	file.open("time.txt");
+	time_t seconds;
+	seconds = time(NULL);
+	cout << "The number of seconds since January 1, 1970 is:" << seconds << "\n";
+	char date[12];
+	tm * timeinfo;
+	timeinfo = localtime(&seconds);
+	strftime(date, 100, "%D", timeinfo);	cout << date;	file << date;*/
+	
+	/*string time;
+	ifstream file;
+	file.open("time.txt");
+	file >> time;
+	cout << time;*/
+	BankAccount *bk = new BankAccount();
+	bk->deposit(100);
+	bk->deposit(1222);
+	bk->withdraw(200);
+	bk->printHistory();
+	
 	system("Pause");
     return 0;
 }

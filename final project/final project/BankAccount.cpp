@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include "BankAccount.h"
@@ -17,6 +18,7 @@ BankAccount::BankAccount() {
 
 		/*Initialized the bank account history file.*/
 		file.open("bankAccountHistory.txt");
+		file << std::left << setw(20) << "Deposit" << std::left << setw(20) << "Amount" << std::left << setw(20) << "Date" << std::left << setw(20) << "Balance" << "\n";
 		file.close();
 	}
 	else {
@@ -39,7 +41,14 @@ void BankAccount::deposit(double amount) {
 	file << cashBalance << "\n";
 	file.close();
 	file.open("bankAccountHistory.txt", ios::app);
-	file << std::left << setw(10) << "Deposit" << std::left << setw(10) << amount << endl;
+	//calcuate the date.
+	time_t seconds;
+	seconds = time(NULL);
+	char date[12];
+	tm * timeinfo;
+	timeinfo = localtime(&seconds);
+	strftime(date, 100, "%D", timeinfo);
+	file << std::left << setw(20) << "Deposit" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
 	file.close();
 }
 
@@ -50,7 +59,14 @@ double BankAccount::withdraw(double amount) {
 	file << cashBalance << "\n";
 	file.close();
 	file.open("bankAccountHistory.txt", ios::app);
-	file << std::left << setw(10) << "Withdraw" << std::left << setw(10) << amount << endl;
+	//calcuate the date.
+	time_t seconds;
+	seconds = time(NULL);
+	char date[12];
+	tm * timeinfo;
+	timeinfo = localtime(&seconds);
+	strftime(date, 100, "%D", timeinfo);
+	file << std::left << setw(20) << "Withdrawal" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
 	file.close();
 	return amount;
 }
@@ -64,7 +80,7 @@ void BankAccount::printHistory() {
 	ifstream in("bankAccountHistory.txt");
 	while (!in.eof()) {
 		in.getline(line, 100);
-		cout << line << endl;
+		cout << line;
 	}
 	in.close();
 }

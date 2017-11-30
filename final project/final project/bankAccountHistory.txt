@@ -1,6 +1,10 @@
-Withdraw  1559      
-Withdraw  2962      
-Withdraw  3001      
-Deposit   1327.2    
-Deposit   918.6     
-Deposit   1550.5    
+Deposit             Amount              Date                Balance             
+Deposit             $100                11/30/17            10100               
+Deposit             $1222               11/30/17            11322               
+Withdrawal          $200                11/30/17            11122               
+Deposit             $100                11/30/17            11222               
+Deposit             $1222               11/30/17            12444               
+Withdrawal          $200                11/30/17            12244               
+Deposit             $100                11/30/17            12344               
+Deposit             $1222               11/30/17            13566               
+Withdrawal          $200                11/30/17            13366               
