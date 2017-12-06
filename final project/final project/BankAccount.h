@@ -9,6 +9,7 @@ class BankAccount : public Account {
 public:
 	BankAccount();
 	void setCashBalance(double cash);
+	double getCashBalance();
 	void deposit(double amount);
 	double withdraw(double amount);
 	void printHistory();

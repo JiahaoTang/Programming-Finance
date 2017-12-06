@@ -6,64 +6,105 @@
 #include <fstream>
 
 using namespace std;
+void mainInstructions();
+void StockInstructions();
+void BankInstructions();
+void bankManage();
+void stockManage();
 
-int main(int argc, const char * argv[]) {
-	StockAccount *sa = new StockAccount();
-	//BankAccount *bk = new BankAccount();
-	int tag1 = sa->buy("Result_1.txt", "GE", 100, 16.00);
-	int tag2 = sa->buy("Result_1.txt", "AIG", 100, 36.00);
-	int tag3 = sa->buy("Result_1.txt", "YHOO", 100, 16.00);
+int main() {
+	int choice;
+	mainInstructions();
+	cout << "Option:";
+	cin >> choice;
+	while (true) {
+		switch (choice) {
+		case 1: {
+			bankManage();
+			break;
+		}
+		case 2: {
+			stockManage();
+			break;
+		}
+		case 3: {
+			return 0;
+		}
+		}
+	}
 
-	int tag4 = sa->sell("Result_2.txt", "GE", 100, 16.00);
-	int tag5 = sa->sell("Result_2.txt", "AIG", 100, 32.00);
-	
-	/*switch (tag) {
-		case 0: {
-			cout << "Sell successfully." << endl;
-			break;
-		}
-		case -1: {
-			cout << "Price is not satisifing." << endl;
-			break;
-		}
-		case -2: {
-			cout << "There is no this stock." << endl;
-			break;
-		}
-		case -3: {
-			cout << "The shares of this stock is not enough." << endl;
-			break;
-		}
-	}*/
-	
-	sa->printPortfolio();
-	cout << endl;
-	sa->printTransactionHistory();
-	sa->storeTotalPortfolioValue();
-	
-	
-	//bk->printHistory();
-
-	/*ofstream file;
-	file.open("time.txt");
-	time_t seconds;
-	seconds = time(NULL);
-	cout << "The number of seconds since January 1, 1970 is:" << seconds << "\n";
-	char date[12];
-	tm * timeinfo;
-	timeinfo = localtime(&seconds);
-	strftime(date, 100, "%X", timeinfo);	cout << date;	file << date;*/
-	
-	/*string time;
-	ifstream file;
-	file.open("time.txt");
-	file >> time;
-	cout << time;*/
-	/*BankAccount *bk = new BankAccount();
-	bk->deposit(100);
-	bk->deposit(1222);
-	bk->withdraw(200);
-	bk->printHistory();*/
 	system("Pause");
     return 0;
+}
+
+void bankManage() {
+	int choice;
+	mainInstructions();
+	cout << "Option:";
+	cin >> choice;
+	BankAccount *bk = new BankAccount();
+	while (true) {
+		switch (choice) {
+		case 1: {
+			int cash = bk->getCashBalance();
+			cout << "1. You have $" << cash << " in your bank account" << endl;
+			cout << endl;
+			break;
+		}
+		case 2: {
+			double depositAmount;
+			cout << "Please selec the amount you wish to deposit: $" << endl;
+			cin >> depositAmount;
+			bk->deposit(depositAmount);
+			break;
+		}
+		case 3: {
+			double withdrawAmount;
+			cout << "Please selec the amount you wish to withdraw: $" << endl;
+			cin >> withdrawAmount;
+			bk->withdraw(withdrawAmount);
+			break;
+			break;
+		}
+		case 4: {
+			bk->printHistory();
+			break;
+		}
+		case 5: {
+			main();
+		}
+		}
+	}
+}
+
+void stockManange() {
+
+}
+
+void mainInstructions() {
+	cout << "Welcom to the Account Management System." << endl;
+	cout << "Please select an account to access:" << endl;
+	cout << "1. Stock Portfolio Account" << endl;
+	cout << "2. Bank Account" << endl;
+	cout << "3. Exit" << endl;
+}
+
+void StockInstructions() {
+	cout << "Please select an option:" << endl;
+	cout << "1. Display the price of a stock symbol." << endl;
+	cout << "2. Display the current portfolio." << endl;
+	cout << "3. Buy shares." << endl;
+	cout << "4. Sell shares." << endl;
+	cout << "5. View a graph for the portfolio value." << endl;
+	cout << "6. View transaction history." << endl;
+	cout << "7. Return to previous menu." << endl;
+}
+
+void BankInstructions() {
+	cout << "Please select an option" << endl;
+	cout << "1. View account balance." << endl;
+	cout << "2. Deposit money." << endl;
+	cout << "3. Withdraw money." << endl;
+	cout << "4. Print out history." << endl;
+	cout << "5. Return to previous menu" << endl;
 }

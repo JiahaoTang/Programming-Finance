@@ -34,6 +34,10 @@ void BankAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
+double BankAccount::getCashBalance() {
+	return cashBalance;
+}
+
 void BankAccount::deposit(double amount) {
 	cashBalance += amount;
 	ofstream file;
