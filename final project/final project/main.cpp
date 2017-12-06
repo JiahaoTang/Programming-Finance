@@ -78,7 +78,119 @@ void bankManage() {
 }
 
 void stockManange() {
+	int choice;
+	StockInstructions();
+	cout << "Option:";
+	cin >> choice;
 
+	//Create a stockAccount.
+	StockAccount *sa = new StockAccount();
+
+	//Create a random number.
+	int fileNo = random();
+
+	if(fileNo % 2 == 1) 
+		string fileName = "Result_1.txt";
+	else
+		string fileName = "Result_2.txt";
+
+	while (true) {
+		switch (choice) {
+		case 1: {//get stock price.
+			string companySymbol;
+			cout << "Please enter the stock symbol: ";
+			cin >> companySymbol;
+			double price = sa->getStockPrice(fileName, companySymbol);
+			cout << "Company symbol price per share" << endl;
+			cout << companySymbol << " $" << price << endl;
+			cout << endl;
+			break;
+		}
+		case 2: {//print portfolio
+			sa->printPortfolio();
+			break;
+		}
+		case 3: {//buy
+			string companySymbol;
+			cout << "Please enter the stock symbol you wish to purchase: ";
+			cin >> companySymbol;
+			int shares;
+			cout << "Please enter the number of shares: ";
+			cin >> shares;
+			double price;
+			cout << "Please enter the maximum amount you are willing to pay per share: ";
+			cin >> price;
+
+			int tag = sa->buy(filename, companySymbol, shares, price);
+			switch(tag){
+				case 0:{
+					cout << "Buy successfully!" << endl;
+					break;
+				}
+				case -1:{
+					cout << "Fail: The given price is not satisfied." << endl;
+					break;
+				}
+				case -2:{
+					cout << "Fail: You do not have enough cash." << endl;
+					break;
+				}
+				case -3:{
+					cout << "Fail: You do not have enough cash and the given price is not satisfied." << endl;
+					break;
+				}
+				case -4:{
+					cout << "Fail: There is no such company symbol." << endl;
+					break;
+				}
+			}
+			break;
+		}
+		case 4: {//sell
+			string companySymbol;
+			cout << "Please enter the stock symbol you wish to purchase: ";
+			cin >> companySymbol;
+			int shares;
+			cout << "Please enter the number of shares: ";
+			cin >> shares;
+			double price;
+			cout << "Please enter the maximum amount you are willing to pay per share: ";
+			cin >> price;
+
+			int tag = sa->sell(fileName, companySymbol, shares, price);
+			switch(tag){
+				case 0:{
+					cout << "Sell successfully!" << endl;
+					break;
+				}
+				case -1:{
+					cout << "Fail: The given price is not satisfied." << endl;
+					break;
+				}
+				case -2:{
+					cout << "Fail: There is no such company symbol." << endl;
+					break;
+				}
+				case -3:{
+					cout << "Fail: You do not have enough shares of this stock to sell." << endl;
+					break;
+				}
+			}
+			break;
+		}
+		case 5: {//graph with MATLAB.
+			sa->drawGraph();
+			break;
+		}
+		case 6: {//print transaction history.
+			sa->printTransactionHistory();
+			break;
+		}
+		case 7: {//return to main menu.
+			main();
+		}
+		}
+	}
 }
 
 void mainInstructions() {

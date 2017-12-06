@@ -96,6 +96,25 @@ double StockAccount::getCashBalance() {
 	return cashBalance;
 }
 
+double StockAccount::getStockPrice(string fileName, string companySymbol){
+	ifstream file(fileName);
+	if(!file.is_open()){
+		cout << "File open error!" << endl;
+		return 0;
+	}
+	string stockSymbol;
+	double price;
+	while (stockSymbol != companySymbol && !in.eof()) {
+		file >> stockSymbol;
+	}
+	if (in.eof()){
+		cout << "There is no such company!" << endl;
+		return -1;
+	}
+	in >> price;
+	return price;
+}
+
 int StockAccount::buy(string fileName, string companySymbol, int shares, double buyPrice) {
 	/*Search companySymbol in file.*/
 	ifstream in(fileName);
