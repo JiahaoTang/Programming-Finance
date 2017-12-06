@@ -1,3 +1,6 @@
 Event     Company Symbol      Number    Price     Total value    Time      
-Buy       GE                  100       $15.59    $1559          11:22:47  
-Buy       GE                  500       $15.59    $7795          11:22:55  
+Buy       GE                  100       $15.59    $1559          20:29:15  
+Buy       AIG                 100       $35.1     $3510          20:29:15  
+Buy       YHOO                100       $15.38    $1538          20:29:15  
+Sell      GE                  100       $16.59    $1659          20:29:15  
+Sell      AIG                 100       $32.1     $3210          20:29:15  

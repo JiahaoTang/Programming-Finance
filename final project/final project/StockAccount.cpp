@@ -4,6 +4,17 @@
 #include "StockAccount.h"
 #include "BankAccount.h"
 #include <iomanip>
+#include<yvals.h>
+#if(_MSC_VER>=1600)
+#define _STDC_utf_16__
+#endif
+#include"mex.h"
+#include<engine.h>
+#include <vector>;
+
+#pragma comment(lib,"libmx.lib")
+#pragma comment(lib,"libmex.lib")
+#pragma comment(lib,"libeng.lib")
 
 using namespace std;
 
@@ -40,7 +51,7 @@ StockAccount::StockAccount() {
 	}
 
 	/*Initialized the portfolio.txt and DLList if it is not exist.
-	Else, read the porfolio and */
+	Else, read the porfolio. */
 	ifstream portIn("portfolio.txt");
 	if (!portIn.is_open()) {
 		ofstream file;
@@ -81,6 +92,10 @@ void StockAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
+double StockAccount::getCashBalance() {
+	return cashBalance;
+}
+
 int StockAccount::buy(string fileName, string companySymbol, int shares, double buyPrice) {
 	/*Search companySymbol in file.*/
 	ifstream in(fileName);
@@ -101,14 +116,14 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);
-		//calcuate the date.
+		//calcuate the time.
 		time_t seconds;
 		seconds = time(NULL);
-		char date[12];
+		char time[12];
 		tm * timeinfo;
 		timeinfo = localtime(&seconds);
-		strftime(date, 100, "%X", timeinfo);
-		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << date << "\n";
+		strftime(time, 100, "%X", timeinfo);
+		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << time << "\n";
 		file.close();
 
 		/*Updated the portfolio.txt.*/
@@ -155,14 +170,15 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);
-		//calcuate the date.
+
+		//calcuate the time.
 		time_t seconds;
 		seconds = time(NULL);
-		char date[12];
+		char time[12];
 		tm * timeinfo;
 		timeinfo = localtime(&seconds);
-		strftime(date, 100, "%X", timeinfo);
-		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << date << "\n";
+		strftime(time, 100, "%X", timeinfo);
+		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << time << "\n";
 		file.close();
 
 		/*Updated the portfolio.txt.*/
@@ -215,4 +231,94 @@ void StockAccount::printTransactionHistory() {
 
 double StockAccount::getValue() {
 	return totalValue;
+}
+
+void StockAccount::drawGraph() {
+	Engine *ep;
+	ep = engOpen(NULL);
+	if (ep == NULL)
+	{
+		cout << "ERROR:engine open failed" << endl;
+		exit(1);
+	}
+
+	/*Load data from tatalPortfolioValue.*/
+	vector<double> timeVec;
+	vector<double> valueVec;
+
+	/*Open tatalPortfolioValue and read data to vector value.*/
+	ifstream portIn("portfolio.txt");
+	string head;
+	int time;
+	double value;
+	int counter = 0;
+	//get head of portfolio.
+	portIn >> head;
+	portIn >> head;
+
+	while (!portIn.eof()) {
+		if (counter % 2 == 0 && counter == 0) {
+			portIn >> value;
+			valueVec.push_back(value);
+		}
+		if (counter % 2 == 1) {
+			portIn >> time;
+			timeVec.push_back(time);
+		}
+		counter++;
+	}
+	int timeSize = timeVec.size();
+	int valueSize = valueVec.size();
+	double *timeArray = new double[timeSize];
+	double *valueArray = new double[valueSize];
+
+	for (int i = 0; i < timeVec.size(); i++) {
+		timeArray[i] = timeVec[i];
+		valueArray[i] = valueVec[i];
+	}
+	
+
+	mxArray *A;
+	A = mxCreateDoubleMatrix(1, timeVec.size(), mxREAL);
+	memcpy((void*)mxGetPr(A), (void *)timeArray, sizeof(double) * timeVec.size());
+	mxArray *B;
+	B = mxCreateDoubleMatrix(1, valueVec.size(), mxREAL);
+	memcpy((void*)mxGetPr(B), (void *)valueArray, sizeof(double) * valueVec.size());
+
+	engPutVariable(ep, "time", A);
+	engPutVariable(ep, "value", B);
+	engEvalString(ep, "plot(time, value)");
+
+	system("pause");
+
+	mxDestroyArray(A);
+	engEvalString(ep, "close;");
+
+	engClose(ep);
+}
+
+void StockAccount::storeTotalPortfolioValue() {
+	//calcuate current time.
+	time_t seconds;
+	seconds = time(NULL);
+	/*char time[12];
+	tm * timeinfo;
+	timeinfo = localtime(&seconds);
+	strftime(time, 100, "%c", timeinfo);*/
+	
+
+	ifstream in("totalPorfolioValue.txt");
+	if (!in.is_open()) {
+		ofstream file;
+		file.open("totalPorfolioValue.txt"); 
+		file << std::left << setw(15) << "Total Value" << std::left << setw(15) << "Time" << "\n";
+		file << std::left << setw(15) <<  getCashBalance() + getValue() << std::left << setw(15) << seconds << "\n";
+		file.close();
+	}
+	else {
+		ofstream file;
+		file.open("totalPorfolioValue.txt", ios::app);
+		file << std::left << setw(15) << getCashBalance() + getValue() << std::left << setw(15) << seconds << "\n";
+		file.close();
+	}
 }

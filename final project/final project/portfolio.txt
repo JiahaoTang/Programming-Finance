@@ -1,2 +1,2 @@
 Company Symbol      Number    Price-per-share     Total value
-GE                  600       15.59               9354                
+YHOO                100       15.38               1538                

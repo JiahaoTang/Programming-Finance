@@ -1,2 +1,5 @@
-Withdrawal          $1559               11/30/17            8441                
-Withdrawal          $7795               11/30/17            646                 
+Withdrawal          $1559               12/05/17            8441                
+Withdrawal          $3510               12/05/17            4931                
+Withdrawal          $1538               12/05/17            3393                
+Deposit             $1659               12/05/17            5052                
+Deposit             $3210               12/05/17            8262                

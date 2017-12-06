@@ -9,8 +9,15 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
 	StockAccount *sa = new StockAccount();
-	int tag = sa->buy("Result_1.txt", "GE", 499, 16.00);
-	switch (tag) {
+	//BankAccount *bk = new BankAccount();
+	int tag1 = sa->buy("Result_1.txt", "GE", 100, 16.00);
+	int tag2 = sa->buy("Result_1.txt", "AIG", 100, 36.00);
+	int tag3 = sa->buy("Result_1.txt", "YHOO", 100, 16.00);
+
+	int tag4 = sa->sell("Result_2.txt", "GE", 100, 16.00);
+	int tag5 = sa->sell("Result_2.txt", "AIG", 100, 32.00);
+	
+	/*switch (tag) {
 		case 0: {
 			cout << "Sell successfully." << endl;
 			break;
@@ -27,11 +34,15 @@ int main(int argc, const char * argv[]) {
 			cout << "The shares of this stock is not enough." << endl;
 			break;
 		}
-	}
+	}*/
 	
 	sa->printPortfolio();
 	cout << endl;
 	sa->printTransactionHistory();
+	sa->storeTotalPortfolioValue();
+	
+	
+	//bk->printHistory();
 
 	/*ofstream file;
 	file.open("time.txt");
@@ -53,8 +64,6 @@ int main(int argc, const char * argv[]) {
 	bk->deposit(1222);
 	bk->withdraw(200);
 	bk->printHistory();*/
-	
-	
 	system("Pause");
     return 0;
 }
