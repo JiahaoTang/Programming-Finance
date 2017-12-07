@@ -71,7 +71,15 @@ void bankManage() {
 			double withdrawAmount;
 			cout << "Please select the amount you wish to withdraw: $";
 			cin >> withdrawAmount;
-			bk->withdraw(withdrawAmount);
+			double tag = bk->withdraw(withdrawAmount);
+			if (tag == -1) {
+				cout << "Fail: The cash balance is not enough." << endl;
+				cout << endl;
+			}
+			else {
+				cout << "Withdraw successfully!" << endl;
+				cout << endl;
+			}
 			break;
 		}
 		case 4: {

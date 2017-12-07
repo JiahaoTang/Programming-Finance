@@ -57,6 +57,9 @@ void BankAccount::deposit(double amount) {
 }
 
 double BankAccount::withdraw(double amount) {
+	if (amount > getCashBalance()) {
+		return -1;
+	}
 	cashBalance -= amount;
 	ofstream file;
 	file.open("bankCashBalance.txt");
