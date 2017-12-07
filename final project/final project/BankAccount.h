@@ -6,6 +6,7 @@
 using namespace std;
 
 class BankAccount : public Account {
+/*Public member functions.*/
 public:
 	BankAccount();
 	void setCashBalance(double cash);
@@ -13,6 +14,7 @@ public:
 	void deposit(double amount);
 	double withdraw(double amount);
 	void printHistory();
+/*Privte member variables.*/
 private:
 	double cashBalance;
 };

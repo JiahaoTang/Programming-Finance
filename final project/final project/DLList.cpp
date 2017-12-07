@@ -5,6 +5,7 @@
 
 using namespace std;
 
+/*Constructor.*/
 DLList::DLList() {
 	sentinel = new Stock("sentinel", 0, 0);
 	sentinel->back = sentinel;
@@ -13,10 +14,12 @@ DLList::DLList() {
 	totalValue = 0;
 }
 
+/*Get the number of different stocks.*/
 int DLList::size() {
 	return listSize;
 }
 
+/*Add a new stock at the last position of DLList.*/
 void DLList::addLast(Stock* newNode) {
 	newNode->pre = sentinel->pre;
 	newNode->back = sentinel;
@@ -26,6 +29,7 @@ void DLList::addLast(Stock* newNode) {
 	totalValue += newNode->getValue();
 }
 
+/*Remove a stock from DLList by given company symbol.*/
 bool DLList::remove(string companySymbol) {
 	Stock *ptr = sentinel->back;
 	if (ptr->getName() == companySymbol) {
@@ -53,10 +57,12 @@ bool DLList::remove(string companySymbol) {
 	return false;
 }
 
+/*Get the total value of whole DLList.*/
 double DLList::getTotalValue() {
 	return totalValue;
 }
 
+/*Sort the DLList according to the total value of every stock.*/
 void DLList::bubbleSort() {
 	Stock *ptr = sentinel->pre;
 	for (int i = 0; i < listSize - 1; i++) {
@@ -84,6 +90,7 @@ void DLList::sortTwo() {
 
 }
 
+/*Update the file which store the porfolio information.*/
 void DLList::updatePortfolio() {
 	ofstream file;
 	file.open("portfolio.txt");
@@ -97,6 +104,7 @@ void DLList::updatePortfolio() {
 	file.close();
 }
 
+/*Get the number of shares by given company symbol.*/
 int DLList::getShares(string companySymbol) {
 	Stock *ptr = sentinel->back;
 	while (ptr != sentinel) {
@@ -108,6 +116,7 @@ int DLList::getShares(string companySymbol) {
 	return -1;
 }
 
+/*Increase the shares by given company symbol and amounts.*/
 bool DLList::increaseShares(string companySymbol, int shares) {
 	Stock *ptr = sentinel->back;
 	while (ptr != sentinel) {
@@ -121,6 +130,7 @@ bool DLList::increaseShares(string companySymbol, int shares) {
 	return false;
 }
 
+/*Decrease the shares by given company symbol and amounts.*/
 bool DLList::decreaseShares(string companySymbol, int shares) {
 	Stock *ptr = sentinel->back;
 	while (ptr != sentinel) {

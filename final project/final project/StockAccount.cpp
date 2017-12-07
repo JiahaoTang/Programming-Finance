@@ -18,6 +18,7 @@
 
 using namespace std;
 
+/*Constructor.*/
 StockAccount::StockAccount() {
 	totalValue = 0;
 
@@ -89,14 +90,17 @@ StockAccount::StockAccount() {
 	}
 }
 
+/*Set cash balance.*/
 void StockAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
+/*Get cash balance.*/
 double StockAccount::getCashBalance() {
 	return cashBalance;
 }
 
+/*Get the price of given stock from given file.*/
 double StockAccount::getStockPrice(string fileName, string companySymbol){
 	ifstream file(fileName);
 	if(!file.is_open()){
@@ -116,6 +120,7 @@ double StockAccount::getStockPrice(string fileName, string companySymbol){
 	return price;
 }
 
+/*Buy a specific stock from given file with given price and shares.*/
 int StockAccount::buy(string fileName, string companySymbol, int shares, double buyPrice) {
 	/*Search companySymbol in file.*/
 	ifstream in(fileName);
@@ -176,6 +181,7 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 	
 }
 
+/*Sell a specific stock from given file with given price and shares.*/
 int StockAccount::sell(string fileName, string companySymbol, int shares, double sellPrice) {
 	/*Search stock in file and get the price.*/
 	ifstream in(fileName);
@@ -228,6 +234,7 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 	}
 }
 
+/*Print out the information of portfolio.*/
 void StockAccount::printPortfolio() {
 	ifstream in;
 	in.open("bankCashBalance.txt");
@@ -247,6 +254,7 @@ void StockAccount::printPortfolio() {
 	cout << endl;
 }
 
+/*Print out the transaction history.*/
 void StockAccount::printTransactionHistory() {
 	char line[100];
 	ifstream file;
@@ -258,10 +266,12 @@ void StockAccount::printTransactionHistory() {
 	file.close();
 }
 
+/*Get the total value of portfolio.*/
 double StockAccount::getValue() {
 	return totalValue;
 }
 
+/*Draw the graph in MATLAB.*/
 void StockAccount::drawGraph() {
 	Engine *ep;
 	ep = engOpen(NULL);
@@ -322,6 +332,7 @@ void StockAccount::drawGraph() {
 	engClose(ep);
 }
 
+/*Store the total porfolio value and time in to file.*/
 void StockAccount::storeTotalPortfolioValue() {
 	//calcuate current time.
 	time_t seconds;

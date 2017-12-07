@@ -7,6 +7,7 @@
 using namespace std;
 
 class StockAccount : public Account{
+/*Public member functions.*/
 public:
 	StockAccount();
 	void setCashBalance(double);
@@ -19,6 +20,7 @@ public:
 	void drawGraph();
 	void storeTotalPortfolioValue();
 	double getStockPrice(string, string);
+/*Private member variables.*/
 private:
 	DLList *portfolio;
 	double totalValue;

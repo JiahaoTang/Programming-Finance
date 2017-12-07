@@ -5,8 +5,10 @@
 using namespace std;
 
 class Stock{
+	/*Class DLList is a friend class with Class Stock.*/
 	friend class DLList;
 public:
+	/*Public member functions.*/
 	Stock(string, double, int);
 	double getPrice();
     int getShares();
@@ -17,6 +19,7 @@ public:
 	void increaseShares(int amount);
 	void decreaseShares(int amount);
 private:
+	/*Private member variables.*/
     string companySymbol;
 	double price;
     int shares;

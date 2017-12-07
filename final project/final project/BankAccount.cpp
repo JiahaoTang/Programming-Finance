@@ -7,6 +7,7 @@
 using namespace std;
 using std::setw;
 
+/*Constructor.*/
 BankAccount::BankAccount() {
 	ifstream in("bankCashBalance.txt");
 	if (!in.is_open()) {
@@ -31,14 +32,17 @@ BankAccount::BankAccount() {
 	}
 }
 
+/*Set the cash balance.*/
 void BankAccount::setCashBalance(double cash) {
 	cashBalance = cash;
 }
 
+/*Get the cash balance.*/
 double BankAccount::getCashBalance() {
 	return cashBalance;
 }
 
+/*Deposit money to bank account with given amount.*/
 void BankAccount::deposit(double amount) {
 	cashBalance += amount;
 	ofstream file;
@@ -58,6 +62,7 @@ void BankAccount::deposit(double amount) {
 	file.close();
 }
 
+/*Withdraw money from bank account with given amount.*/
 double BankAccount::withdraw(double amount) {
 	if (amount > getCashBalance()) {
 		return -1;
@@ -81,6 +86,7 @@ double BankAccount::withdraw(double amount) {
 	return amount;
 }
 
+/*Print out the history of bank account.*/
 void BankAccount::printHistory() {
 	char line[100];
 	ifstream inbk("bankCashBalance.txt");

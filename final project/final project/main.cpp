@@ -13,6 +13,7 @@ void BankInstructions();
 void bankManage();
 void stockManage();
 
+/*Main function.*/
 int main() {
 	int choice;
 	mainInstructions();
@@ -41,25 +42,8 @@ int main() {
 	}
 	return 0;
 }
-/*int main() {
-	DLList * dll = new DLList();
-	Stock *node1 = new Stock("GOOG", 5, 100);//500
-	Stock *node2 = new Stock("TJH", 9, 2);	 //18
-	Stock *node3 = new Stock("ZTY", 2.4, 55);//132
-	Stock *node4 = new Stock("JJC", 34, 5);	 //170
-	Stock *node5 = new Stock("DJM", 2.78, 24);//66.72
-	Stock *node6 = new Stock("LJJ", 9.99, 44);//439.56
-	Stock *node7 = new Stock("DYF", 3.78, 36);//136.08
-	dll->addLast(node1);
-	dll->addLast(node2);
-	dll->addLast(node3);
-	dll->addLast(node4);
-	dll->addLast(node5);
-	dll->addLast(node6);
-	dll->addLast(node7);
-	dll->bubbleSort();
-}*/
 
+/*Bank account management function.*/
 void bankManage() {
 	int choice;
 	BankAccount *bk = new BankAccount();
@@ -116,6 +100,7 @@ void bankManage() {
 	}
 }
 
+/*Stock account management function.*/
 void stockManage() {
 	int choice;
 	//Create a stockAccount.
@@ -244,6 +229,7 @@ void stockManage() {
 	return;
 }
 
+/*Print out the main menu.*/
 void mainInstructions() {
 	cout << "Welcom to the Account Management System." << endl;
 	cout << "Please select an account to access:" << endl;
@@ -252,6 +238,7 @@ void mainInstructions() {
 	cout << "3. Exit" << endl;
 }
 
+/*Print out the stock management system menu.*/
 void StockInstructions() {
 	cout << "Please select an option:" << endl;
 	cout << "1. Display the price of a stock symbol." << endl;
@@ -263,6 +250,7 @@ void StockInstructions() {
 	cout << "7. Return to previous menu." << endl;
 }
 
+/*Print out the bank management system menu.*/
 void BankInstructions() {
 	cout << "Please select an option" << endl;
 	cout << "1. View account balance." << endl;

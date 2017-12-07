@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/*Create a basic virtual function for class BankAccount and StockAccount.*/
 class Account {
 private:
 	double cashBalance;
