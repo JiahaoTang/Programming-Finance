@@ -18,6 +18,7 @@ public:
 	double getValue();
 	void drawGraph();
 	void storeTotalPortfolioValue();
+	double getStockPrice(string, string);
 private:
 	DLList *portfolio;
 	double totalValue;

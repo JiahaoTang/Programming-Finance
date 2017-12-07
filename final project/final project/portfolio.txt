@@ -1,2 +1,0 @@
-Company Symbol      Number    Price-per-share     Total value
-YHOO                100       15.38               1538                

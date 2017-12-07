@@ -17,8 +17,8 @@ BankAccount::BankAccount() {
 		file.close();
 
 		/*Initialized the bank account history file.*/
-		file.open("bankAccountHistory.txt");
-		file << std::left << setw(20) << "Deposit" << std::left << setw(20) << "Amount" << std::left << setw(20) << "Date" << std::left << setw(20) << "Balance" << "\n";
+		file.open("bankAccountHistory.txt", ios::app);
+		file << std::left << setw(20) << "Event" << std::left << setw(20) << "Amount" << std::left << setw(20) << "Date" << std::left << setw(20) << "Balance" << "\n";
 		file.close();
 	}
 	else {
@@ -80,6 +80,7 @@ void BankAccount::printHistory() {
 	ifstream inbk("bankCashBalance.txt");
 	inbk.getline(line, 100);
 	cout << "The cash balance of this account is: " << line << "." << endl;
+	cout << endl;
 
 	ifstream in("bankAccountHistory.txt");
 	while (!in.eof()) {

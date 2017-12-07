@@ -15,35 +15,44 @@ void stockManage();
 int main() {
 	int choice;
 	mainInstructions();
-	cout << "Option:";
-	cin >> choice;
+	cout << "Option: ";
+	cin >> choice; 
+	if (choice > 3 || choice < 1) {
+		cout << "The option number is wrong. Please enter a option between 1 and 3." << endl;
+		cout << "Option: ";
+		cin >> choice;
+	}
 	while (true) {
 		switch (choice) {
 		case 1: {
-			bankManage();
-			break;
+			stockManage();
+			return 0;
 		}
 		case 2: {
-			stockManage();
-			break;
+			bankManage();
+			return 0;
 		}
 		case 3: {
 			return 0;
 		}
 		}
 	}
-
-	system("Pause");
-    return 0;
+	return 0;
 }
 
 void bankManage() {
 	int choice;
-	mainInstructions();
-	cout << "Option:";
-	cin >> choice;
 	BankAccount *bk = new BankAccount();
 	while (true) {
+		BankInstructions();
+		cout << "Option: ";
+		cin >> choice;
+		if (choice > 5 || choice < 1) {
+			cout << "The option number is wrong. Please enter a option between 1 and 5." << endl;
+			cout << "Option: ";
+			cin >> choice;
+		}
+		cout << endl;
 		switch (choice) {
 		case 1: {
 			int cash = bk->getCashBalance();
@@ -53,48 +62,54 @@ void bankManage() {
 		}
 		case 2: {
 			double depositAmount;
-			cout << "Please selec the amount you wish to deposit: $" << endl;
+			cout << "Please select the amount you wish to deposit: $" ;
 			cin >> depositAmount;
 			bk->deposit(depositAmount);
 			break;
 		}
 		case 3: {
 			double withdrawAmount;
-			cout << "Please selec the amount you wish to withdraw: $" << endl;
+			cout << "Please select the amount you wish to withdraw: $";
 			cin >> withdrawAmount;
 			bk->withdraw(withdrawAmount);
-			break;
 			break;
 		}
 		case 4: {
 			bk->printHistory();
+			cout << endl;
 			break;
 		}
 		case 5: {
 			main();
+			return;
 		}
 		}
 	}
 }
 
-void stockManange() {
+void stockManage() {
 	int choice;
-	StockInstructions();
-	cout << "Option:";
-	cin >> choice;
-
 	//Create a stockAccount.
 	StockAccount *sa = new StockAccount();
 
-	//Create a random number.
-	int fileNo = random();
-
-	if(fileNo % 2 == 1) 
-		string fileName = "Result_1.txt";
-	else
-		string fileName = "Result_2.txt";
-
 	while (true) {
+		//Create a random number.
+		srand((unsigned)(time(NULL)));
+		int fileNo = rand();
+
+		string fileName;
+		if (fileNo % 2 == 1) fileName = "Result_1.txt";
+		else fileName = "Result_2.txt";
+
+		StockInstructions();
+		cout << "Option: ";
+		cin >> choice;
+		if (choice > 7 || choice < 1) {
+			cout << "The option number is wrong. Please enter a option between 1 and 7." << endl;
+			cout << "Option: ";
+			cin >> choice;
+		}
+		cout << endl;
 		switch (choice) {
 		case 1: {//get stock price.
 			string companySymbol;
@@ -121,7 +136,7 @@ void stockManange() {
 			cout << "Please enter the maximum amount you are willing to pay per share: ";
 			cin >> price;
 
-			int tag = sa->buy(filename, companySymbol, shares, price);
+			int tag = sa->buy(fileName, companySymbol, shares, price);
 			switch(tag){
 				case 0:{
 					cout << "Buy successfully!" << endl;
@@ -184,13 +199,16 @@ void stockManange() {
 		}
 		case 6: {//print transaction history.
 			sa->printTransactionHistory();
+			cout << endl;
 			break;
 		}
 		case 7: {//return to main menu.
 			main();
+			return;
 		}
 		}
 	}
+	return;
 }
 
 void mainInstructions() {

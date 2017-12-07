@@ -104,14 +104,14 @@ double StockAccount::getStockPrice(string fileName, string companySymbol){
 	}
 	string stockSymbol;
 	double price;
-	while (stockSymbol != companySymbol && !in.eof()) {
+	while (stockSymbol != companySymbol && !file.eof()) {
 		file >> stockSymbol;
 	}
-	if (in.eof()){
+	if (file.eof()){
 		cout << "There is no such company!" << endl;
 		return -1;
 	}
-	in >> price;
+	file >> price;
 	return price;
 }
 
