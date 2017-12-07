@@ -131,6 +131,7 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 		if (!portfolio->increaseShares(companySymbol, shares)) {
 			Stock *newNode = new Stock(companySymbol, price, shares);
 			portfolio->addLast(newNode);
+			portfolio->bubbleSort();
 		}
 
 		/*Store it into transaction history.*/
@@ -189,6 +190,8 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 
 	/*Search companySymbol in DLList.*/
 	if (portfolio->decreaseShares(companySymbol, shares)) {
+		/*Keep portfolio sorted.*/
+		portfolio->bubbleSort();
 		/*Store it into transaction history.*/
 		ofstream file;
 		file.open("transactionHistory.txt", ios::app);

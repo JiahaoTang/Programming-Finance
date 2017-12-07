@@ -5,6 +5,7 @@
 using namespace std;
 
 class Stock{
+	friend class DLList;
 public:
 	Stock(string, double, int);
 	double getPrice();

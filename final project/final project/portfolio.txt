@@ -1,2 +1,4 @@
 Company Symbol      Number    Price-per-share     Total value
-AMD                 181       6.95                1257.95             
+AMD                 160       6.95                1112                
+BA                  20        51.7                1034                
+GOOG                1         569.964             569.964             

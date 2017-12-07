@@ -12,7 +12,7 @@ public:
 	void addLast(Stock* newNode);
 	bool remove(string companySymbol);
 	double getTotalValue();
-	void sortOne();
+	void bubbleSort();
 	void sortTwo();
 	void updatePortfolio();
 	int getShares(string companySymbol);

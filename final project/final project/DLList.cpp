@@ -57,8 +57,27 @@ double DLList::getTotalValue() {
 	return totalValue;
 }
 
-void DLList::sortOne() {
+void DLList::bubbleSort() {
+	Stock *ptr = sentinel->pre;
+	for (int i = 0; i < listSize - 1; i++) {
+		for (int j = 0; j < listSize - i - 1; j++) {
+			if (ptr->getValue() > ptr->pre->getValue()) {
+				string temp_comSymbol = ptr->companySymbol;
+				double temp_price = ptr->price;
+				int temp_shares = ptr->shares;
 
+				ptr->companySymbol = ptr->pre->companySymbol;
+				ptr->price = ptr->pre->price;
+				ptr->shares = ptr->pre->shares;
+
+				ptr->pre->companySymbol = temp_comSymbol;
+				ptr->pre->price = temp_price;
+				ptr->pre->shares = temp_shares;
+			}
+			ptr = ptr->pre;
+		}
+		ptr = sentinel->pre;
+	}
 }
 
 void DLList::sortTwo() {
