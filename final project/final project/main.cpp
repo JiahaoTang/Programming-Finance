@@ -4,6 +4,7 @@
 #include "StockAccount.h"
 #include <time.h>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 void mainInstructions();
@@ -17,6 +18,7 @@ int main() {
 	mainInstructions();
 	cout << "Option: ";
 	cin >> choice; 
+	cout << endl;
 	if (choice > 3 || choice < 1) {
 		cout << "The option number is wrong. Please enter a option between 1 and 3." << endl;
 		cout << "Option: ";
@@ -55,7 +57,8 @@ void bankManage() {
 		cout << endl;
 		switch (choice) {
 		case 1: {
-			int cash = bk->getCashBalance();
+			double cash = bk->getCashBalance();
+			cout << setiosflags(ios::fixed) << setprecision(2);
 			cout << "1. You have $" << cash << " in your bank account" << endl;
 			cout << endl;
 			break;
@@ -124,8 +127,10 @@ void stockManage() {
 			cout << "Please enter the stock symbol: ";
 			cin >> companySymbol;
 			double price = sa->getStockPrice(fileName, companySymbol);
-			cout << "Company symbol price per share" << endl;
-			cout << companySymbol << " $" << price << endl;
+			if (price != -1 && price != -2) {
+				cout << "Company symbol price per share" << endl;
+				cout << companySymbol << " $" << price << endl;
+			}
 			cout << endl;
 			break;
 		}

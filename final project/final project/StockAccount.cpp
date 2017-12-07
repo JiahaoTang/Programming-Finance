@@ -99,8 +99,8 @@ double StockAccount::getCashBalance() {
 double StockAccount::getStockPrice(string fileName, string companySymbol){
 	ifstream file(fileName);
 	if(!file.is_open()){
-		cout << "File open error!" << endl;
-		return 0;
+		cout << "Fail: File open error!" << endl;
+		return -2;
 	}
 	string stockSymbol;
 	double price;
@@ -108,7 +108,7 @@ double StockAccount::getStockPrice(string fileName, string companySymbol){
 		file >> stockSymbol;
 	}
 	if (file.eof()){
-		cout << "There is no such company!" << endl;
+		cout << "Fail: There is no such company!" << endl;
 		return -1;
 	}
 	file >> price;

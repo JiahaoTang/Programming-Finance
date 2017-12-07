@@ -13,6 +13,7 @@ BankAccount::BankAccount() {
 		setCashBalance(10000);
 		ofstream file;
 		file.open("bankCashBalance.txt");
+		file << setiosflags(ios::fixed) << setprecision(2);
 		file << 10000 << "\n";
 		file.close();
 
@@ -52,6 +53,7 @@ void BankAccount::deposit(double amount) {
 	tm * timeinfo;
 	timeinfo = localtime(&seconds);
 	strftime(date, 100, "%D", timeinfo);
+	file << setiosflags(ios::fixed) << setprecision(2);
 	file << std::left << setw(20) << "Deposit" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
 	file.close();
 }
@@ -73,6 +75,7 @@ double BankAccount::withdraw(double amount) {
 	tm * timeinfo;
 	timeinfo = localtime(&seconds);
 	strftime(date, 100, "%D", timeinfo);
+	file << setiosflags(ios::fixed) << setprecision(2);
 	file << std::left << setw(20) << "Withdrawal" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
 	file.close();
 	return amount;

@@ -1,3 +1,3 @@
 Event               Amount              Date                Balance             
-Deposit             $5000               12/06/17            15000               
-Withdrawal          $1575               12/06/17            13425               
+Withdrawal          $1.11               12/06/17            9998.89             
+Deposit             $1.11               12/06/17            10000.00            
