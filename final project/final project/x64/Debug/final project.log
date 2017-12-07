@@ -1,3 +1,7 @@
-﻿  BankAccount.cpp
+﻿  StockAccount.cpp
+c:\users\administrator\desktop\programming_finance\hw\final project\final project\stockaccount.cpp(13): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
+c:\users\administrator\desktop\programming_finance\hw\final project\final project\stockaccount.cpp(292): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\final project\final project\stockaccount.cpp(293): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\administrator\desktop\programming_finance\hw\final project\final project\stockaccount.cpp(176): warning C4715: “StockAccount::buy”: 不是所有的控件路径都返回值
   final project.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\final project\x64\Debug\final project.exe
   final project.vcxproj -> C:\Users\Administrator\Desktop\Programming_Finance\hw\final project\x64\Debug\final project.pdb (Partial PDB)

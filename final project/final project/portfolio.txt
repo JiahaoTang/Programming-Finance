@@ -1,1 +1,2 @@
 Company Symbol      Number    Price-per-share     Total value
+AMD                 181       6.95                1257.95             

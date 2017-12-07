@@ -129,6 +129,7 @@ void stockManage() {
 			double price = sa->getStockPrice(fileName, companySymbol);
 			if (price != -1 && price != -2) {
 				cout << "Company symbol price per share" << endl;
+				cout << setiosflags(ios::fixed) << setprecision(2);
 				cout << companySymbol << " $" << price << endl;
 			}
 			cout << endl;
@@ -172,6 +173,7 @@ void stockManage() {
 					break;
 				}
 			}
+			cout << endl;
 			break;
 		}
 		case 4: {//sell

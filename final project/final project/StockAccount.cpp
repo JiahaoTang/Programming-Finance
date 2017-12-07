@@ -29,7 +29,8 @@ StockAccount::StockAccount() {
 		setCashBalance(10000);
 		ofstream file;
 		file.open("bankCashBalance.txt");
-		file << 10000 << "\n";
+		file << setiosflags(ios::fixed) << setprecision(2);
+		file << 10000.00 << "\n";
 		file.close();
 	}
 	else {
@@ -142,7 +143,9 @@ int StockAccount::buy(string fileName, string companySymbol, int shares, double 
 		tm * timeinfo;
 		timeinfo = localtime(&seconds);
 		strftime(time, 100, "%X", timeinfo);
-		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << time << "\n";
+		file << setiosflags(ios::fixed) << setprecision(2);
+		double stockValue = price * shares;
+		file << std::left << setw(10) << "Buy" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << stockValue << std::left << setw(10) << time << "\n";
 		file.close();
 
 		/*Updated the portfolio.txt.*/
@@ -197,6 +200,7 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 		tm * timeinfo;
 		timeinfo = localtime(&seconds);
 		strftime(time, 100, "%X", timeinfo);
+		file << setiosflags(ios::fixed) << setprecision(2);
 		file << std::left << setw(10) << "Sell" << std::left << setw(20) << companySymbol << std::left << setw(10) << shares << std::left << setw(1) << "$" << std::left << setw(9) << price << std::left << setw(1) << "$" << std::left << setw(14) << price * shares << std::left << setw(10) << time << "\n";
 		file.close();
 
@@ -213,6 +217,7 @@ int StockAccount::sell(string fileName, string companySymbol, int shares, double
 		in.open("bankCashBalance.txt");
 		in >> cashBalance;
 		in.close();
+		storeTotalPortfolioValue();
 		return 0;
 	}
 	else {
@@ -225,6 +230,7 @@ void StockAccount::printPortfolio() {
 	in.open("bankCashBalance.txt");
 	in >> cashBalance;
 	in.close();
+	cout << setiosflags(ios::fixed) << setprecision(2);
 	cout << "Cash Balance = $" << cashBalance << endl;
 	char line[100];
 	ifstream file;
@@ -235,6 +241,7 @@ void StockAccount::printPortfolio() {
 	}
 	file.close();
 	cout << "Total Portfolio Value = $" << cashBalance + getValue() << endl;
+	cout << endl;
 }
 
 void StockAccount::printTransactionHistory() {
@@ -266,17 +273,13 @@ void StockAccount::drawGraph() {
 	vector<double> valueVec;
 
 	/*Open tatalPortfolioValue and read data to vector value.*/
-	ifstream portIn("portfolio.txt");
-	string head;
+	ifstream portIn("totalPorfolioValue.txt");
 	int time;
 	double value;
 	int counter = 0;
-	//get head of portfolio.
-	portIn >> head;
-	portIn >> head;
 
 	while (!portIn.eof()) {
-		if (counter % 2 == 0 && counter == 0) {
+		if (counter % 2 == 0) {
 			portIn >> value;
 			valueVec.push_back(value);
 		}
@@ -326,17 +329,17 @@ void StockAccount::storeTotalPortfolioValue() {
 	strftime(time, 100, "%c", timeinfo);*/
 	
 
-	ifstream in("totalPorfolioValue.txt");
-	if (!in.is_open()) {
+	ofstream file("totalPorfolioValue.txt", ios::app);
+	if (!file.is_open()) {
 		ofstream file;
-		file.open("totalPorfolioValue.txt"); 
+		file.open("totalPorfolioValue.txt", ios::app); 
 		file << std::left << setw(15) << "Total Value" << std::left << setw(15) << "Time" << "\n";
+		file << setiosflags(ios::fixed) << setprecision(2);
 		file << std::left << setw(15) <<  getCashBalance() + getValue() << std::left << setw(15) << seconds << "\n";
 		file.close();
 	}
 	else {
-		ofstream file;
-		file.open("totalPorfolioValue.txt", ios::app);
+		file << setiosflags(ios::fixed) << setprecision(2);
 		file << std::left << setw(15) << getCashBalance() + getValue() << std::left << setw(15) << seconds << "\n";
 		file.close();
 	}
