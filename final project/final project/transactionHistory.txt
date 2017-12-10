@@ -1,5 +1,4 @@
 Event     Company Symbol      Number    Price     Total value    Time      
-Buy       BA                  20        $51.70    $1034.00       16:21:41  
-Buy       AMD                 160       $6.95     $1112.00       16:22:08  
-Buy       GOOG                5         $569.96   $2849.82       16:22:26  
-Sell      GOOG                4         $568.96   $2275.86       16:23:13  
+Buy       YHOO                100       $15.38    $1538.00       18:09:07  
+Buy       MSFT                50        $29.62    $1481.00       18:09:17  
+Sell      YHOO                44        $16.38    $720.72        18:09:33  

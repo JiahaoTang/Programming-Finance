@@ -209,6 +209,7 @@ void stockManage() {
 					break;
 				}
 			}
+			cout << endl;
 			break;
 		}
 		case 5: {//graph with MATLAB.
