@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/*BackAccount inherit from class Account.
+  And function setCashBalance() is a bridge between StockAccount and BankAccount.
+  So we use bridge design pattern at here.*/
 class BankAccount : public Account {
 /*Public member functions.*/
 public:
