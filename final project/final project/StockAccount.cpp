@@ -284,6 +284,7 @@ void StockAccount::drawGraph() {
 	/*Load data from tatalPortfolioValue.*/
 	vector<double> timeVec;
 	vector<double> valueVec;
+	
 
 	/*Open tatalPortfolioValue and read data to vector value.*/
 	ifstream portIn("totalPorfolioValue.txt");
@@ -311,14 +312,13 @@ void StockAccount::drawGraph() {
 		timeArray[i] = timeVec[i];
 		valueArray[i] = valueVec[i];
 	}
-	
 
 	mxArray *A;
 	A = mxCreateDoubleMatrix(1, timeVec.size(), mxREAL);
 	memcpy((void*)mxGetPr(A), (void *)timeArray, sizeof(double) * timeVec.size());
 	mxArray *B;
-	B = mxCreateDoubleMatrix(1, valueVec.size(), mxREAL);
-	memcpy((void*)mxGetPr(B), (void *)valueArray, sizeof(double) * valueVec.size());
+	B = mxCreateDoubleMatrix(1, timeVec.size(), mxREAL);
+	memcpy((void*)mxGetPr(B), (void *)valueArray, sizeof(double) * timeVec.size());
 
 	engPutVariable(ep, "time", A);
 	engPutVariable(ep, "value", B);

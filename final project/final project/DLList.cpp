@@ -87,7 +87,32 @@ void DLList::bubbleSort() {
 }
 
 void DLList::sortTwo() {
+	Stock *first = sentinel->back;
+	Stock *ptr = sentinel->back;
+	Stock *max = ptr;
+	for (int i = 0; i < size() - 1; i++) {
+		while (ptr != sentinel) {
+			if (max->getValue() < ptr->getValue()) max = ptr;
+			ptr = ptr->back;
+		}
 
+		//swap first and max.
+		string temp_comSymbol = max->companySymbol;
+		double temp_price = max->price;
+		int temp_shares = max->shares;
+
+		max->companySymbol = first->companySymbol;
+		max->price = first->price;
+		max->shares = first->shares;
+
+		first->companySymbol = temp_comSymbol;
+		first->price = temp_price;
+		first->shares = temp_shares;
+
+		first = first->back;
+		ptr = first;
+		max = ptr;
+	}
 }
 
 /*Update the file which store the porfolio information.*/

@@ -181,7 +181,7 @@ void stockManage() {
 		}
 		case 4: {//sell
 			string companySymbol;
-			cout << "Please enter the stock symbol you wish to purchase: ";
+			cout << "Please enter the stock symbol you wish to sell: ";
 			cin >> companySymbol;
 			int shares;
 			cout << "Please enter the number of shares: ";

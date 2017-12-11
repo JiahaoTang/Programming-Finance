@@ -59,6 +59,7 @@ void BankAccount::deposit(double amount) {
 	strftime(date, 100, "%D", timeinfo);
 	file << setiosflags(ios::fixed) << setprecision(2);
 	file << std::left << setw(20) << "Deposit" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
+	storeTotalPortfolioValue();
 	file.close();
 }
 
@@ -83,6 +84,7 @@ double BankAccount::withdraw(double amount) {
 	file << setiosflags(ios::fixed) << setprecision(2);
 	file << std::left << setw(20) << "Withdrawal" << std::left << setw(1) << "$" << std::left << setw(19) << amount << std::left << setw(20) << date << std::left << setw(20) << cashBalance << "\n";
 	file.close();
+	storeTotalPortfolioValue();
 	return amount;
 }
 
@@ -100,4 +102,31 @@ void BankAccount::printHistory() {
 		cout << line;
 	}
 	in.close();
+}
+
+/*Store the total porfolio value and time in to file.*/
+void BankAccount::storeTotalPortfolioValue() {
+	//calcuate current time.
+	time_t seconds;
+	seconds = time(NULL);
+	/*char time[12];
+	tm * timeinfo;
+	timeinfo = localtime(&seconds);
+	strftime(time, 100, "%c", timeinfo);*/
+
+
+	ofstream file("totalPorfolioValue.txt", ios::app);
+	if (!file.is_open()) {
+		ofstream file;
+		file.open("totalPorfolioValue.txt", ios::app);
+		file << std::left << setw(15) << "Total Value" << std::left << setw(15) << "Time" << "\n";
+		file << setiosflags(ios::fixed) << setprecision(2);
+		file << std::left << setw(15) << getCashBalance() << std::left << setw(15) << seconds << "\n";
+		file.close();
+	}
+	else {
+		file << setiosflags(ios::fixed) << setprecision(2);
+		file << std::left << setw(15) << getCashBalance() << std::left << setw(15) << seconds << "\n";
+		file.close();
+	}
 }

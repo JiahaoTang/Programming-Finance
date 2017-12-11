@@ -14,6 +14,7 @@ public:
 	void deposit(double amount);
 	double withdraw(double amount);
 	void printHistory();
+	void storeTotalPortfolioValue();
 /*Privte member variables.*/
 private:
 	double cashBalance;
