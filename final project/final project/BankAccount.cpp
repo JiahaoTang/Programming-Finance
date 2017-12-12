@@ -99,7 +99,7 @@ void BankAccount::printHistory() {
 	ifstream in("bankAccountHistory.txt");
 	while (!in.eof()) {
 		in.getline(line, 100);
-		cout << line;
+		cout << line << endl;
 	}
 	in.close();
 }
