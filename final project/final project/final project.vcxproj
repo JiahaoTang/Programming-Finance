@@ -26,11 +26,11 @@
     <ClInclude Include="StockAccount.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BankAccount.cpp" />
-    <ClCompile Include="DLList.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Stock.cpp" />
-    <ClCompile Include="StockAccount.cpp" />
+    <ClCompile Include="BankAccount_Jiahao_Tang.cpp" />
+    <ClCompile Include="DLList_Jiahao_Tang.cpp" />
+    <ClCompile Include="main_Jiahao_Tang.cpp" />
+    <ClCompile Include="StockAccount_Jiahao_Tang.cpp" />
+    <ClCompile Include="Stock_Jiahao_Tang.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

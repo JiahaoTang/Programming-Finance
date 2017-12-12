@@ -32,19 +32,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="StockAccount_Jiahao_Tang.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Stock.cpp">
+    <ClCompile Include="Stock_Jiahao_Tang.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DLList.cpp">
+    <ClCompile Include="main_Jiahao_Tang.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BankAccount.cpp">
+    <ClCompile Include="DLList_Jiahao_Tang.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="StockAccount.cpp">
+    <ClCompile Include="BankAccount_Jiahao_Tang.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

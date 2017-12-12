@@ -1,3 +1,2 @@
 Company Symbol      Number    Price-per-share     Total value
-MSFT                20        30.62               612.4               
-YHOO                20        15.38               307.6               
+YHOO                60        16.38               982.8               
